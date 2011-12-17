@@ -1,3 +1,6 @@
+;; C-x C-e compile
+;; C-h k hotkey -- help about hotkey
+
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
 
@@ -14,5 +17,7 @@
     (scroll-bar-mode nil)
     (setq default-vertical-scroll-bar nil))
   (blink-cursor-mode nil))
+
+(load-file "~/.emacs.d/hotkeys.el")
 
 
