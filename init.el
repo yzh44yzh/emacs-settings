@@ -1,8 +1,10 @@
 ;; C-x C-e compile
 ;; C-h k hotkey -- help about hotkey
 
+
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
+(show-paren-mode 1)
 
 (require 'color-theme)
 (eval-after-load "color-theme"
