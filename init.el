@@ -1,10 +1,14 @@
 ;; C-x C-e compile
+;; M-x eval-region
 ;; C-h k hotkey -- help about hotkey
 
 
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1)
+(setq make-backup-files nil) 
+(setq auto-save-default nil)
+
 
 (require 'color-theme)
 (eval-after-load "color-theme"
@@ -22,4 +26,15 @@
 
 (load-file "~/.emacs.d/hotkeys.el")
 
+;; erlang mode
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.6.3/emacs")
 
+(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+
+(setq erlang-root-dir "/usr/lib/erlang")
+(add-to-list 'exec-path "/usr/lib/erlang/bin")
+(setq erlang-man-root-dir "/usr/lib/erlang/man")
+
+(require 'erlang-start)
+(require 'erlang-flymake)
