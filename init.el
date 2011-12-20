@@ -8,6 +8,7 @@
 (show-paren-mode 1)
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
+(setq kill-whole-line t) 
 
 
 (require 'color-theme)
