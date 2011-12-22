@@ -24,7 +24,4 @@
 
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
-(global-set-key [M-left] 'previous-buffer)    ;; default is backword-word
-(global-set-key [M-right] 'next-buffer)       ;; default is forward-word
-(global-set-key [f1] 'menu-bar-mode)          ;; default is help
 

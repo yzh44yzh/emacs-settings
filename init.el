@@ -1,8 +1,3 @@
-;; C-x C-e compile
-;; M-x eval-region
-;; C-h k hotkey -- help about hotkey
-
-
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1)
