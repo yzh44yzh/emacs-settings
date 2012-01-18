@@ -11,17 +11,50 @@
 (global-set-key [M-left] 'previous-buffer) ;; default is backword-word
 (global-set-key [M-right] 'next-buffer)    ;; default is forward-word
 
-;; copy, paste, cut
-;; use C-insert, M-insert or standard keys:
-;; C-w kill-region
-;; M-w kill-ring-save
-;; C-y yank
 
 ;; copy/paste to/from system buffer
 ;; super key is win key
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save) 
 (global-set-key (kbd "s-v") 'x-clipboard-yank)         
 
+
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
 
+
+;; copy region if it is exists 
+;; or copy current line if region is not exists
+;; to internal and to system buffer
+(defun my-copy()
+  (interactive)
+  (if (region-active-p)
+      (save-excursion
+	(clipboard-kill-ring-save (region-beginning) (region-end))
+	(kill-ring-save (region-beginning) (region-end)))
+    (save-excursion
+      (beginning-of-line)
+      (let ((beg (point)))
+      (end-of-line)
+      (clipboard-kill-ring-save beg (point))
+      (kill-ring-save beg (point))))))
+
+(global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
+
+
+;; cut region if it is exists 
+;; or cut current line if region is not exists
+;; to internal and to system buffer
+(defun my-cut()
+  (interactive)
+  (if (region-active-p)
+      (progn
+	(clipboard-kill-ring-save (region-beginning) (region-end))
+	(kill-region (region-beginning) (region-end)))
+    (progn
+      (beginning-of-line)
+      (let ((beg (point)))
+      (end-of-line)
+      (clipboard-kill-ring-save beg (point))
+      (kill-region beg (point))))))
+
+(global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
