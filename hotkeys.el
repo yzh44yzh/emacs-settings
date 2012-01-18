@@ -22,8 +22,8 @@
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
 
 
-;; copy region if it is exists 
-;; or copy current line if region is not exists
+;; copy region if it exists 
+;; or copy current line if region not exists
 ;; to internal and to system buffer
 (defun my-copy()
   (interactive)
@@ -41,8 +41,8 @@
 (global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
 
 
-;; cut region if it is exists 
-;; or cut current line if region is not exists
+;; cut region if it exists 
+;; or cut current line if region not exists
 ;; to internal and to system buffer
 (defun my-cut()
   (interactive)
