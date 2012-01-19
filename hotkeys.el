@@ -52,3 +52,26 @@
       (kill-region (line-beginning-position) (line-end-position)))))
 
 (global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
+
+
+; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
+; 
+; Map Modifier-CyrillicLetter to the underlying Modifier-LatinLetter, so that
+; control sequences can be used when keyboard mapping is changed outside of
+; Emacs.
+;
+; For this to work correctly, .emacs must be encoded in the default coding
+; system.
+;
+(mapcar*
+ (lambda (r e) ; R and E are matching Russian and English keysyms
+   ; iterate over modifiers
+   (mapc (lambda (mod)
+    (define-key input-decode-map
+      (vector (list mod r)) (vector (list mod e))))
+  '(control meta super hyper))
+   ; finally, if Russian key maps nowhere, remap it to the English key without
+   ; any modifiers
+   (define-key local-function-key-map (vector r) (vector e)))
+   "йцукенгшщзхъфывапролджэячсмитьбю"
+   "qwertyuiop[]asdfghjkl;'zxcvbnm,.")
