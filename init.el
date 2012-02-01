@@ -13,6 +13,8 @@
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (when (fboundp 'menu-bar-mode)
+    (menu-bar-mode nil))
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode nil))
   (when (fboundp 'scroll-bar-mode)
@@ -34,3 +36,5 @@
 
 (require 'erlang-start)
 (require 'erlang-flymake)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
