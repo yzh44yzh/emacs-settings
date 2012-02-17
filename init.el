@@ -4,23 +4,24 @@
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
 (setq kill-whole-line t) 
+(menu-bar-mode nil)
 
 
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn (color-theme-initialize)))
-(color-theme-calm-forest)
+
+(color-theme-billw) ;; color theme for console mode
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (when (fboundp 'menu-bar-mode)
-    (menu-bar-mode nil))
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode nil))
   (when (fboundp 'scroll-bar-mode)
     (scroll-bar-mode nil)
     (setq default-vertical-scroll-bar nil))
-  (blink-cursor-mode nil))
+  (blink-cursor-mode nil)
+  (color-theme-calm-forest))
 
 (load-file "~/.emacs.d/hotkeys.el")
 
