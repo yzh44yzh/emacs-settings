@@ -5,6 +5,7 @@
 (setq auto-save-default nil)
 (setq kill-whole-line t) 
 (menu-bar-mode nil)
+(set-face-attribute 'default nil :font "Ubuntu Mono-13")
 
 
 (require 'color-theme)
