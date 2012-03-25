@@ -1,10 +1,12 @@
 -module(supervisor_tpl).
 -author('Yura Zhloba <yzh44yzh@gmail.com>').
 
+% http://www.erlang.org/doc/man/supervisor.html
+% http://www.erlang.org/doc/design_principles/sup_princ.html
+
 -behaviour(supervisor).
 
--export([start_link/0]).
--export([init/1]).
+-export([start_link/0, init/1]).
 
 %% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
 start_link() ->
@@ -15,18 +17,19 @@ start_link() ->
 %%                     ignore |
 %%                     {error, Reason}
 init([]) ->
-    RestartStrategy = one_for_one,
-    MaxRestarts = 1000,
-    MaxSecondsBetweenRestarts = 3600,
-
+    RestartStrategy = one_for_one, % one_for_one | one_for_all | rest_for_one
+    MaxRestarts = 10,
+    MaxSecondsBetweenRestarts = 60,
     SupFlags = {RestartStrategy, MaxRestarts, MaxSecondsBetweenRestarts},
 
-    Restart = permanent,
-    Shutdown = 2000,
-    Type = worker,
+    Restart = permanent, % permanent | transient | temporary
+    Shutdown = 2000,     % brutal_kill | int() >= 0 | infinity
+    Type = worker,       % worker | supervisor
 
-    AChild = {'AName', {'AModule', start_link, []},
-	      Restart, Shutdown, Type, ['AModule']},
+    AChild = {'AName', % used to identify the child spec internally by the supervisor
+	      {'AModule', start_link, []}, % StartFun = {M, F, A}
+	      Restart, Shutdown, Type, 
+	      ['AModule']}, % Modules  = [Module] | dynamic
 
     {ok, {SupFlags, [AChild]}}.
 
