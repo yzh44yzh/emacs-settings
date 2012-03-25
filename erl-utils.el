@@ -1,0 +1,18 @@
+(defun erl-new-file (module-name tpl-file)
+  (setq new-file (format "%s.erl" module-name))
+  (copy-file tpl-file new-file)
+  (switch-to-buffer (find-file new-file))
+  (search-forward "(")
+  (setq begin (point))
+  (search-forward ")")
+  (backward-char)
+  (kill-region begin (point))
+  (insert module-name))
+
+(defun erl-new-module (module-name)
+  (interactive "MModule name:")
+  (erl-new-file module-name "~/.emacs.d/tpl/module_tpl.erl"))
+
+(defun erl-new-gen-server (module-name)
+  (interactive "MModule name:")
+  (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))

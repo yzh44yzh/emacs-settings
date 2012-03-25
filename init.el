@@ -39,6 +39,8 @@
 (require 'erlang-start)
 (require 'erlang-flymake)
 
+(load-file "~/.emacs.d/erl-utils.el")
+
 ;; scala
 ;; http://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/emacs/
 (add-to-list 'load-path "~/.emacs.d/scala-emacs")
