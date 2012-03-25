@@ -13,6 +13,10 @@
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/module_tpl.erl"))
 
+(defun erl-new-supervisor (module-name)
+  (interactive "MModule name:")
+  (erl-new-file module-name "~/.emacs.d/tpl/supervisor_tpl.erl"))
+
 (defun erl-new-gen-server (module-name)
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
