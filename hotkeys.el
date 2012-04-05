@@ -26,8 +26,8 @@
 	(clipboard-kill-ring-save (region-beginning) (region-end))
 	(kill-ring-save (region-beginning) (region-end)))
     (save-excursion
-      (clipboard-kill-ring-save (line-beginning-position) (line-end-position))
-      (kill-ring-save (line-beginning-position) (line-end-position)))))
+      (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
+      (kill-ring-save (line-beginning-position) (+ 1 (line-end-position))))))
 
 (global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
 
@@ -42,8 +42,8 @@
 	(clipboard-kill-ring-save (region-beginning) (region-end))
 	(kill-region (region-beginning) (region-end)))
     (progn
-      (clipboard-kill-ring-save (line-beginning-position) (line-end-position))
-      (kill-region (line-beginning-position) (line-end-position)))))
+      (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
+      (kill-region (line-beginning-position) (+ 1 (line-end-position))))))
 
 (global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
 
