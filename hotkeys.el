@@ -2,9 +2,11 @@
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
 ;; switch buffers
-(global-set-key [M-left] 'previous-buffer) ;; default is backword-word
-(global-set-key [M-right] 'next-buffer)    ;; default is forward-word
-
+(global-set-key [M-left] 'tabbar-backward-tab) ;; default is backword-word
+(global-set-key [M-right] 'tabbar-forward-tab) ;; default is forward-word
+(global-set-key [S-M-left] 'tabbar-backward-group)
+(global-set-key [S-M-right] 'tabbar-forward-group)
+;; c-c c-home tabbar-press-home show all tabbar groups
 
 ;; copy/paste to/from system buffer
 ;; super key is win key

@@ -6,7 +6,7 @@
 (setq kill-whole-line t) 
 (menu-bar-mode nil)
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
-
+(tabbar-mode)
 
 (require 'color-theme)
 (eval-after-load "color-theme"
