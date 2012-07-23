@@ -3,7 +3,6 @@
 (show-paren-mode 1)
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
-(setq kill-whole-line t) 
 (menu-bar-mode nil)
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
 (tabbar-mode)
@@ -43,17 +42,17 @@
 
 ;; scala
 ;; http://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/emacs/
-(add-to-list 'load-path "~/.emacs.d/scala-emacs")
-(require 'scala-mode-auto)
+;(add-to-list 'load-path "~/.emacs.d/scala-emacs")
+;(require 'scala-mode-auto)
 
-(add-hook 'scala-mode-hook
-	  '(lambda ()
-	     (scala-mode-feature-electric-mode)
-	     ))
+;(add-hook 'scala-mode-hook
+;	  '(lambda ()
+;	     (scala-mode-feature-electric-mode)
+;	     ))
 
-(require 'scala-mode)
-(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-(add-to-list 'load-path "~/.emacs.d/site-lisp/ensime/elisp/")
+;(require 'scala-mode)
+;(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
+;(add-to-list 'load-path "~/.emacs.d/site-lisp/ensime/elisp/")
 
 
 ;; haskell
