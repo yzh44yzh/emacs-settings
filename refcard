@@ -99,4 +99,12 @@ C-h f  function
 C-h m  mode
 
 
-==Distel==
+==Regitsters & Bookmarks==
+
+C-x r SPC reg  point-to-register
+C-x r j reg    jump-to-register
+C-x r s reg    copy-to-register
+C-x r i reg    insert-register
+C-x r m        bookmark-set
+C-x r b name   bookmark-jump
+C-x r l        list-bookmarks
