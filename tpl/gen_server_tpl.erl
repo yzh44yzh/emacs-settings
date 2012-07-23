@@ -6,12 +6,18 @@
 -export([start_link/0]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
--record(state, {}).
+-define(ERROR(Format, Data), error_logger:error_msg(Format, Data)).
+-type(error() :: term()).
+-type(request() :: term()).
+-type(reply() :: term()).
+-type(reason() :: term()).
+
+-record(state, {
+	 }).
 
 %%% module API
 
-%% Starts the server
-%% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
+-spec(start_link() -> {ok, pid()} | ignore | {error, error()}).
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
@@ -20,48 +26,45 @@ start_link() ->
 
 %%% gen_server API
 
-%% Initializes the server
-%% @spec init(Args) -> {ok, State} |
-%%                     {ok, State, Timeout} |
-%%                     ignore |
-%%                     {stop, Reason}
+-spec(init([term()]) -> {ok, #state{}} | {ok, #state{}, timeout()} | ignore | {stop, error()}).
 init([]) ->
-    error_logger:info_msg("~p inited ~n", [?MODULE]),
     {ok, #state{}}.
 
 
-%% @spec handle_call(Request, From, State) ->
-%%                                   {reply, Reply, State} |
-%%                                   {reply, Reply, State, Timeout} |
-%%                                   {noreply, State} |
-%%                                   {noreply, State, Timeout} |
-%%                                   {stop, Reason, Reply, State} |
-%%                                   {stop, Reason, State}
-handle_call(_Request, _From, State) ->
+-spec(handle_call(request(), pid(), #state{}) ->
+                                  {reply, reply(), #state{}} |
+                                  {reply, reply(), #state{}, timeout()} |
+                                  {noreply, #state{}} |
+                                  {noreply, #state{}, timeout()} |
+                                  {stop, reason(), reply(), #state{}} |
+                                  {stop, reason(), #state{}}).
+handle_call({tag, _Data}, _From, State) ->
     Reply = ok,
     {reply, Reply, State};
 
 handle_call(Any, _From, State) ->
-    error_logger:error_msg("unknown call ~p in ~p ~n", [Any, ?MODULE]),
+    ?ERROR("unknown call ~p in ~p ~n", [Any, ?MODULE]),
     {noreply, State}.
 
 
-%% @spec handle_cast(Msg, State) -> {noreply, State} |
-%%                                  {noreply, State, Timeout} |
-%%                                  {stop, Reason, State}
-handle_cast(_Request, State) ->
+-spec(handle_cast(request(), #state{}) ->
+                                  {noreply, #state{}} |
+                                  {noreply, #state{}, timeout()} |
+                                  {stop, reason(), #state{}}).
+handle_cast({tag, _Data}, State) ->
     {noreply, State};
 
 handle_cast(Any, State) ->
-    error_logger:error_msg("unknown cast ~p in ~p ~n", [Any, ?MODULE]),
+    ?ERROR("unknown cast ~p in ~p ~n", [Any, ?MODULE]),
     {noreply, State}.
 
 
-%% @spec handle_info(Info, State) -> {noreply, State} |
-%%                                   {noreply, State, Timeout} |
-%%                                   {stop, Reason, State}
+-spec(handle_info(request(), #state{}) ->
+                                  {noreply, #state{}} |
+                                  {noreply, #state{}, timeout()} |
+                                  {stop, reason(), #state{}}).
 handle_info(Request, State) ->
-    error_logger:error_msg("unknown info ~p in ~n", [Request, ?MODULE]),
+    ?ERROR("unknown info ~p in ~p ~n", [Request, ?MODULE]),
     {noreply, State}.
 
 
