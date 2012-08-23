@@ -3,9 +3,10 @@
 (show-paren-mode 1)
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
-(menu-bar-mode nil)
+(menu-bar-mode 0)
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
-(tabbar-mode)
+(tabbar-mode 1)
+(iswitchb-mode 1)
 
 (require 'color-theme)
 (eval-after-load "color-theme"
@@ -16,7 +17,7 @@
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (when (fboundp 'tool-bar-mode)
-    (tool-bar-mode nil))
+    (tool-bar-mode 0))
   (when (fboundp 'scroll-bar-mode)
     (scroll-bar-mode nil)
     (setq default-vertical-scroll-bar nil))
