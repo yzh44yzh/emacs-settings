@@ -1,6 +1,7 @@
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
-(show-paren-mode 1)
+(show-paren-mode 1) ;; highlight matching parensesis
+(setq-default indent-tabs-mode nil)
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
 (menu-bar-mode 0)
@@ -22,7 +23,7 @@
     (scroll-bar-mode nil)
     (setq default-vertical-scroll-bar nil))
   (blink-cursor-mode nil)
-  (color-theme-calm-forest))
+  (color-theme-arjen))
 
 (load-file "~/.emacs.d/hotkeys.el")
 
@@ -31,6 +32,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.yaws?$" . html-mode))
 
 (setq erlang-root-dir "/usr/lib/erlang")
 (add-to-list 'exec-path "/usr/lib/erlang/bin")
@@ -41,20 +43,10 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 
-;; scala
-;; http://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/emacs/
-;(add-to-list 'load-path "~/.emacs.d/scala-emacs")
-;(require 'scala-mode-auto)
-
-;(add-hook 'scala-mode-hook
-;	  '(lambda ()
-;	     (scala-mode-feature-electric-mode)
-;	     ))
-
-;(require 'scala-mode)
-;(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-;(add-to-list 'load-path "~/.emacs.d/site-lisp/ensime/elisp/")
-
-
 ;; haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
+;; remove tabbar groups
+(setq tabbar-buffer-groups-function
+      (lambda ()
+        (list "All")))

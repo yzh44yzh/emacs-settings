@@ -71,3 +71,6 @@
    (define-key local-function-key-map (vector r) (vector e)))
    "йцукенгшщзхъфывапролджэячсмитьбю"
    "qwertyuiop[]asdfghjkl;'zxcvbnm,.")
+
+(global-set-key (kbd "M-Б") 'beginning-of-buffer)
+(global-set-key (kbd "M-Ю") 'end-of-buffer)
