@@ -2,6 +2,7 @@
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1) ;; highlight matching parensesis
 (setq-default indent-tabs-mode nil)
+(setq-default compile-command "cd ..; make")
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
 (menu-bar-mode 0)
@@ -24,8 +25,6 @@
   (blink-cursor-mode nil)
   (color-theme-arjen))
 
-(load-file "~/.emacs.d/hotkeys.el")
-
 ;; erlang mode
 (add-to-list
    'load-path
@@ -41,9 +40,6 @@
 
 (require 'erlang-start)
 (require 'erlang-flymake)
-
-(load-file "~/.emacs.d/erl-utils.el")
-
 
 ;; distel
 (add-to-list 'load-path "/home/yura/dev/distel/elisp")
@@ -62,3 +58,7 @@
 ;; ido
 (require 'ido)
 (ido-mode t)
+
+(load-file "~/.emacs.d/erl-utils.el")
+(load-file "~/.emacs.d/hotkeys.el")
+

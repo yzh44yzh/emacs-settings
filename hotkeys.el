@@ -18,6 +18,11 @@
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
 
 
+(global-set-key [f6] 'compile)
+(global-set-key [f7] 'erl-reload-module)
+(global-set-key [f8] 'erl-reload-modules)
+
+
 ;; copy region if it exists 
 ;; or copy current line if region not exists
 ;; to internal and to system buffer
@@ -53,11 +58,10 @@
 ;; duplicate line
 (defun duplicate-line()
   (interactive)
-  (progn
-    (kill-region (line-beginning-position) (+ 1 (line-end-position)))
-    (yank)
-    (yank)
-    (previous-line)))
+  (kill-region (line-beginning-position) (+ 1 (line-end-position)))
+  (yank)
+  (yank)
+  (previous-line))
 (global-set-key (kbd "C-M-d") 'duplicate-line) 
 
 
