@@ -56,8 +56,9 @@
   (progn
     (kill-region (line-beginning-position) (+ 1 (line-end-position)))
     (yank)
-    (yank)))
-(global-set-key (kbd "C-c C-d") 'duplicate-line) 
+    (yank)
+    (previous-line)))
+(global-set-key (kbd "C-M-d") 'duplicate-line) 
 
 
 
