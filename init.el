@@ -27,7 +27,9 @@
 (load-file "~/.emacs.d/hotkeys.el")
 
 ;; erlang mode
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.6.3/emacs")
+(add-to-list
+   'load-path
+       (car (file-expand-wildcards "/usr/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -41,6 +43,12 @@
 (require 'erlang-flymake)
 
 (load-file "~/.emacs.d/erl-utils.el")
+
+
+;; distel
+(add-to-list 'load-path "/home/yura/dev/distel/elisp")
+(require 'distel)
+(distel-setup)
 
 ;; haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
