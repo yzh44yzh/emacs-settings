@@ -49,6 +49,20 @@
 
 (global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
 
+;; duplicate line
+(defun duplicate-line()
+  (interactive)
+  (progn
+    (kill-region (line-beginning-position) (+ 1 (line-end-position)))
+    (yank)
+    (yank)))
+(global-set-key (kbd "C-c C-d") 'duplicate-line) 
+
+
+;; line 1
+;; line 2
+;; line 3
+
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
 ; 
