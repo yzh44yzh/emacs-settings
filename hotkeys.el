@@ -65,6 +65,14 @@
 (global-set-key (kbd "C-M-d") 'duplicate-line) 
 
 
+(defun my-sync()
+  (interactive)
+  (save-buffer)
+  (compile "cd ..; make") ;; asyn call, emacs doesn't wait for compilation end
+  (sleep-for 2)
+  (erl-reload-modules (erl-target-node)))
+(global-set-key [f8] 'my-sync) 
+  
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
 ; 
