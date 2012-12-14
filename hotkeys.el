@@ -67,10 +67,10 @@
 
 (defun my-sync()
   (interactive)
-  (save-buffer)
   (compile "cd ..; make") ;; asyn call, emacs doesn't wait for compilation end
   (sleep-for 2)
-  (erl-reload-modules (erl-target-node)))
+  (erl-reload-modules (erl-target-node))
+)
 (global-set-key [f8] 'my-sync) 
   
 

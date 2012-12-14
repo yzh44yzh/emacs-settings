@@ -2,7 +2,7 @@
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1) ;; highlight matching parensesis
 (setq-default indent-tabs-mode nil)
-(setq-default compile-command "cd ..; make")
+(setq-default tab-width 4)
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
 (menu-bar-mode 0)
@@ -47,13 +47,20 @@
 (distel-setup)
 
 ;; haskell
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-to-list 'load-path "~/dev/haskell-mode/")
+(load "~/dev/haskell-mode/haskell-site-file.el")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
+(set 'haskell-font-lock-symbols t)
+(put 'downcase-region 'disabled nil)
 
 ;; tabbar settings
 (tabbar-mode 1)
-(setq tabbar-buffer-groups-function
-      (lambda ()
-        (list "All")))
+;(setq tabbar-buffer-groups-function
+;      (lambda ()
+;        (list "All")))
 
 ;; ido
 (require 'ido)
