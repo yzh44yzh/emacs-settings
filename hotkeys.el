@@ -2,8 +2,8 @@
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
 ;; switch buffers
-(global-set-key [M-left] 'tabbar-backward-tab) ;; default is backword-word
-(global-set-key [M-right] 'tabbar-forward-tab) ;; default is forward-word
+(global-set-key [M-left] 'previous-tab-or-buffer) ;; default is backword-word
+(global-set-key [M-right] 'next-tab-or-buffer) ;; default is forward-word
 (global-set-key [S-M-left] 'tabbar-backward-group)
 (global-set-key [S-M-right] 'tabbar-forward-group)
 ;; c-c c-home tabbar-press-home show all tabbar groups
@@ -16,11 +16,6 @@
 
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
-
-
-(global-set-key [f6] 'compile)
-(global-set-key [f7] 'erl-reload-module)
-(global-set-key [f8] 'erl-reload-modules)
 
 
 ;; copy region if it exists 
@@ -55,46 +50,3 @@
 (global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
 
 
-;; duplicate line
-(defun duplicate-line()
-  (interactive)
-  (kill-region (line-beginning-position) (+ 1 (line-end-position)))
-  (yank)
-  (yank)
-  (previous-line))
-(global-set-key (kbd "C-M-d") 'duplicate-line) 
-
-
-(defun my-sync()
-  (interactive)
-  (compile "cd ..; make") ;; asyn call, emacs doesn't wait for compilation end
-  (sleep-for 2)
-  (erl-reload-modules (erl-target-node))
-)
-(global-set-key [f8] 'my-sync) 
-  
-
-; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
-; 
-; Map Modifier-CyrillicLetter to the underlying Modifier-LatinLetter, so that
-; control sequences can be used when keyboard mapping is changed outside of
-; Emacs.
-;
-; For this to work correctly, .emacs must be encoded in the default coding
-; system.
-;
-(mapcar*
- (lambda (r e) ; R and E are matching Russian and English keysyms
-   ; iterate over modifiers
-   (mapc (lambda (mod)
-    (define-key input-decode-map
-      (vector (list mod r)) (vector (list mod e))))
-  '(control meta super hyper))
-   ; finally, if Russian key maps nowhere, remap it to the English key without
-   ; any modifiers
-   (define-key local-function-key-map (vector r) (vector e)))
-   "йцукенгшщзхъфывапролджэячсмитьбю"
-   "qwertyuiop[]asdfghjkl;'zxcvbnm,.")
-
-(global-set-key (kbd "M-Б") 'beginning-of-buffer)
-(global-set-key (kbd "M-Ю") 'end-of-buffer)
