@@ -64,6 +64,11 @@
   (previous-line))
 (global-set-key (kbd "C-M-d") 'duplicate-line) 
 
+(defun my-new-line()
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+(global-set-key (kbd "C-j") 'my-new-line)
 
 (defun my-sync()
   (interactive)
