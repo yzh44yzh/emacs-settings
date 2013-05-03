@@ -9,7 +9,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
-(setq mac-command-modifier 'meta)
+(setq mac-command-modifier 'control)
 
 (set-face-attribute 'default nil :font "Monaco-15")
 (load-theme 'misterioso t)
