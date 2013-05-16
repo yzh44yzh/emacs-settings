@@ -2,7 +2,8 @@
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
-(global-set-key [M-return] 'complete-symbol)  ;; no default 
+(global-set-key [C-return] 'complete-symbol)  ;; no default
+(global-set-key (kbd "C-/") 'dabbrev-expand)  ;; default is undo
 
 ;; copy region if it exists 
 ;; or copy current line if region not exists
