@@ -11,7 +11,7 @@
 (blink-cursor-mode 0)
 
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
-(load-theme 'wheatgrass t)
+(load-theme 'misterioso t)
 
 ;; erlang mode
 (add-to-list
@@ -30,19 +30,19 @@
 ;; (require 'erlang-flymake) ;; doen't work correctly with include_lib
 
 ;; distel
-(add-to-list 'load-path "/home/yura/dev/distel/elisp")
-(require 'distel)
-(distel-setup)
+;;(add-to-list 'load-path "/home/yura/dev/distel/elisp")
+;;(require 'distel)
+;;(distel-setup)
 
 ;; haskell
-(add-to-list 'load-path "~/dev/haskell-mode/")
-(load "~/dev/haskell-mode/haskell-site-file.el")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
-(set 'haskell-font-lock-symbols t)
-(put 'downcase-region 'disabled nil)
+;;(add-to-list 'load-path "~/dev/haskell-mode/")
+;;(load "~/dev/haskell-mode/haskell-site-file.el")
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
+;;(set 'haskell-font-lock-symbols t)
+;;(put 'downcase-region 'disabled nil)
 
 ;; ido
 (require 'ido)
@@ -52,9 +52,3 @@
 (load-file "~/.emacs.d/hotkeys.el")
 
 
-;; Objective C
-(defun my-objc-mode-hook ()
-  (setq c-indent-level 4)
-  (setq c-basic-offset 4))
-
-(add-hook 'objc-mode-hook 'my-objc-mode-hook)

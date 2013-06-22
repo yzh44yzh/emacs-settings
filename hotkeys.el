@@ -1,22 +1,9 @@
 ;; 57.4.6 Rebinding Keys in Your Init File
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
-;; switch buffers
-(global-set-key [M-left] 'tabbar-backward-tab) ;; default is backword-word
-(global-set-key [M-right] 'tabbar-forward-tab) ;; default is forward-word
-(global-set-key [S-M-left] 'tabbar-backward-group)
-(global-set-key [S-M-right] 'tabbar-forward-group)
-;; c-c c-home tabbar-press-home show all tabbar groups
-
-;; copy/paste to/from system buffer
-;; super key is win key
-(global-set-key (kbd "s-c") 'clipboard-kill-ring-save) 
-(global-set-key (kbd "s-v") 'x-clipboard-yank)         
-
-
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
 (global-set-key [M-return] 'complete-symbol)  ;; no default 
-
+(global-set-key (kbd "C-/") 'dabbrev-expand)  ;; default is undo
 
 (global-set-key [f6] 'compile)
 (global-set-key [f7] 'erl-reload-module)
@@ -88,6 +75,7 @@
 ; For this to work correctly, .emacs must be encoded in the default coding
 ; system.
 ;
+(require 'cl)
 (mapcar*
  (lambda (r e) ; R and E are matching Russian and English keysyms
    ; iterate over modifiers
