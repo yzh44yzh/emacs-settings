@@ -27,9 +27,11 @@
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
 
 (defun clone-line-at-point ()
-  (kill-region (line-beginning-position) (+ 1 (line-end-position)))
+  (kill-region (line-beginning-position) (line-end-position))
   (yank)
-  (yank))
+  (newline)
+  (yank)
+  (newline))
 
 (defun erl-spec ()
   "add -spec to erlang function"
