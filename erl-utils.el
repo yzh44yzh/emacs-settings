@@ -20,3 +20,18 @@
 (defun erl-new-gen-server (module-name)
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
+
+(defun erl-spec ()
+  (interactive)
+  (kill-region (line-beginning-position) (+ 1 (line-end-position)))
+  (yank)
+  (yank)
+  (previous-line)
+  (previous-line)
+  (beginning-of-line)
+  (insert "-spec(")
+  (skip-chars-forward "^(")
+  (forward-char)
+  (delete-region (point) (line-end-position)))
+(global-set-key (kbd "C-c C-s") 'erl-spec)
+

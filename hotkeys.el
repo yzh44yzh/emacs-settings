@@ -9,7 +9,7 @@
 (global-set-key [f7] 'erl-reload-module)
 (global-set-key [f8] 'erl-reload-modules)
 
-
+ 
 ;; copy region if it exists 
 ;; or copy current line if region not exists
 ;; to internal and to system buffer
