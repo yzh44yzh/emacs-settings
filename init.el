@@ -48,13 +48,14 @@
 ;;(distel-setup)
 
 ;; haskell
-(add-to-list 'load-path "~/dev/haskell-mode/")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
-(set 'haskell-font-lock-symbols t)
-(put 'downcase-region 'disabled nil)
+;;(add-to-list 'load-path "~/dev/haskell-mode/")
+;;(require 'haskell-mode-autoloads)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
+;;(set 'haskell-font-lock-symbols t)
+;;(put 'downcase-region 'disabled nil)
 
 ;; ido
 (require 'ido)
@@ -62,4 +63,5 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 (load-file "~/.emacs.d/hotkeys.el")
+
 

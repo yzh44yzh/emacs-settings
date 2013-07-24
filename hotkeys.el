@@ -51,7 +51,6 @@
   (newline-and-indent))
 (global-set-key (kbd "C-j") 'my-new-line)
 
-
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
 ; 
 ; Map Modifier-CyrillicLetter to the underlying Modifier-LatinLetter, so that
