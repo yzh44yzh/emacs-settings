@@ -7,17 +7,12 @@
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
 -define(ERROR(Format, Data), error_logger:error_msg(Format, Data)).
--type(error() :: term()).
--type(request() :: term()).
--type(reply() :: term()).
--type(reason() :: term()).
 
 -record(state, {
 	 }).
 
 %%% module API
 
--spec(start_link() -> {ok, pid()} | ignore | {error, error()}).
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
@@ -26,18 +21,10 @@ start_link() ->
 
 %%% gen_server API
 
--spec(init([term()]) -> {ok, #state{}} | {ok, #state{}, timeout()} | ignore | {stop, error()}).
 init([]) ->
     {ok, #state{}}.
 
 
--spec(handle_call(request(), pid(), #state{}) ->
-                                  {reply, reply(), #state{}} |
-                                  {reply, reply(), #state{}, timeout()} |
-                                  {noreply, #state{}} |
-                                  {noreply, #state{}, timeout()} |
-                                  {stop, reason(), reply(), #state{}} |
-                                  {stop, reason(), #state{}}).
 handle_call({tag, _Data}, _From, State) ->
     Reply = ok,
     {reply, Reply, State};
@@ -47,10 +34,6 @@ handle_call(Any, _From, State) ->
     {noreply, State}.
 
 
--spec(handle_cast(request(), #state{}) ->
-                                  {noreply, #state{}} |
-                                  {noreply, #state{}, timeout()} |
-                                  {stop, reason(), #state{}}).
 handle_cast({tag, _Data}, State) ->
     {noreply, State};
 
@@ -59,10 +42,6 @@ handle_cast(Any, State) ->
     {noreply, State}.
 
 
--spec(handle_info(request(), #state{}) ->
-                                  {noreply, #state{}} |
-                                  {noreply, #state{}, timeout()} |
-                                  {stop, reason(), #state{}}).
 handle_info(Request, State) ->
     ?ERROR("unknown info ~p in ~p ~n", [Request, ?MODULE]),
     {noreply, State}.

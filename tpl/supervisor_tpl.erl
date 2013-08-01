@@ -5,16 +5,11 @@
 
 -export([start_link/0, init/1]).
 
--type(error() :: term()).
--type(sup_flags() :: term()).
--type(child_spec() :: term()).
 
--spec(start_link() -> {ok, pid()} | ignore | {error, error()}).
 start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 
--spec(init([term()]) -> {ok, {sup_flags(), [child_spec()]}} | ignore | {error, error()}).
 init([]) ->
     RestartStrategy = one_for_one, % one_for_one | one_for_all | rest_for_one
     MaxRestarts = 10,
