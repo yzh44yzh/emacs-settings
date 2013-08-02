@@ -4,6 +4,8 @@
 (global-set-key (kbd "C-z") 'undo)            ;; no default 
 (global-set-key [C-return] 'complete-symbol)  ;; no default
 (global-set-key (kbd "C-/") 'dabbrev-expand)  ;; default is undo
+(global-set-key (kbd "C-M-s") 'grep) ;; default is isearch-forward-regexp
+(global-set-key (kbd "C-M-r") 'query-replace) ;; default is isearch-backward-regexp
 
 ;; copy region if it exists 
 ;; or copy current line if region not exists
