@@ -10,6 +10,7 @@
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (setq mac-command-modifier 'control)
+(global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
 
 (set-face-attribute 'default nil :font "Monaco-15")
 (load-theme 'misterioso t)
