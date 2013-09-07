@@ -11,7 +11,7 @@
 (blink-cursor-mode 0)
 
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
-(load-theme 'misterioso t)
+(load-theme 'tango-dark t)
 
 ;; erlang mode
 (add-to-list
@@ -53,3 +53,8 @@
 (load-file "~/.emacs.d/hotkeys.el")
 
 
+;; markdown
+(load-file "~/.emacs.d/plugins/markdown-mode.el")
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))

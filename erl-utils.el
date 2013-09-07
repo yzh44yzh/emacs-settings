@@ -43,7 +43,7 @@
   (skip-chars-forward "^(")
   (forward-char)
   (delete-region (point) (line-end-position)))
-(global-set-key (kbd "C-c C-s") 'erl-spec)
+(global-set-key (kbd "C-c C-d") 'erl-spec)
 
 (defun erl-gen-server (S1 S2 S3 S4 S5)
   "help to generate gen_server code"
