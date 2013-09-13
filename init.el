@@ -9,25 +9,26 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
-(setq mac-command-modifier 'control)
+;;(setq mac-command-modifier 'control)
+(setq mac-command-modifier 'meta)
 (global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
 
 (set-face-attribute 'default nil :font "Monaco-15")
-(load-theme 'misterioso t)
 
-;; (load-theme 'adwaita t)
-;; (load-theme 'deeper-blue t) ;; good
-;; (load-theme 'dichromacy t)
-;; (load-theme 'light-blue t)
-;; (load-theme 'manoj-dark t)
-;; (load-theme 'misterioso t) ;; good
-;; (load-theme 'tango t)
-;; (load-theme 'tango-dark t) ;; good
-;; (load-theme 'tsdh-dark t) ;; good
-;; (load-theme 'tsdh-light t)
-;; (load-theme 'wheatgrass t)
-;; (load-theme 'whiteboard t)
-;; (load-theme 'wombat t)
+;;(load-theme 'tango t)       ;; 5 light
+(load-theme 'tango-dark t)  ;; 5 dark 
+;;(load-theme 'tsdh-dark t)   ;; 5 dark 
+;;(load-theme 'wombat t)      ;; 5 dark
+;;(load-theme 'wheatgrass t)  ;; 4 dark
+;;(load-theme 'misterioso t)  ;; 4 dark
+;;(load-theme 'deeper-blue t) ;; 3 dark 
+;;(load-theme 'manoj-dark t)  ;; 3 dark
+;;(load-theme 'dichromacy t)  ;; 3 light
+;;(load-theme 'tsdh-light t)  ;; 3 light
+;;(load-theme 'whiteboard t)  ;; 3 light
+;;(load-theme 'adwaita t)     ;; 2 light
+;;(load-theme 'light-blue t)  ;; 2 light
+
 
 ;; erlang mode
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.10/emacs")
