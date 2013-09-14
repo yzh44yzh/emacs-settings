@@ -16,7 +16,7 @@
 ;; erlang mode
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -35,15 +35,15 @@
 ;;(distel-setup)
 
 ;; haskell
-(add-to-list 'load-path "~/dev/haskell-mode/")
-(require 'haskell-mode-autoloads)
-(add-to-list 'Info-default-directory-list "~/lib/emacs/haskell-mode/")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
-(set 'haskell-font-lock-symbols t)
-(put 'downcase-region 'disabled nil)
+;; (add-to-list 'load-path "~/dev/haskell-mode/")
+;; (require 'haskell-mode-autoloads)
+;; (add-to-list 'Info-default-directory-list "~/lib/emacs/haskell-mode/")
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
+;; (set 'haskell-font-lock-symbols t)
+;; (put 'downcase-region 'disabled nil)
 
 ;; ido
 (require 'ido)
