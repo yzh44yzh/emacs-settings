@@ -1,15 +1,21 @@
 ;; 57.4.6 Rebinding Keys in Your Init File
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
-(global-set-key (kbd "C-z") 'undo)            ;; no default 
-(global-set-key [M-return] 'complete-symbol)  ;; no default 
-(global-set-key (kbd "C-/") 'dabbrev-expand)  ;; default is undo
+;; more useful hotkeys:
+(global-set-key [C-return] 'complete-symbol)    ;; no default
+(global-set-key (kbd "C-M-s") 'grep)            ;; default is isearch-forward-regexp
+(global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
+(global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j) 
 
-(global-set-key [f6] 'compile)
-(global-set-key [f7] 'erl-reload-module)
-(global-set-key [f8] 'erl-reload-modules)
+;; shadow bad hotkeys:
+;; I never want to put emacs to background
+(global-set-key (kbd "C-z") 'undo)            ;; default is to put emacs to background
+;; very ofter press it when I want switch buffer with C-x b
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer) ;; default is list-buffers, 
 
- 
+
+
+
 ;; copy region if it exists 
 ;; or copy current line if region not exists
 ;; to internal and to system buffer
@@ -41,7 +47,6 @@
 
 (global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
 
-
 ;; duplicate line
 (defun duplicate-line()
   (interactive)
@@ -56,15 +61,6 @@
   (move-end-of-line nil)
   (newline-and-indent))
 (global-set-key (kbd "C-j") 'my-new-line)
-
-(defun my-sync()
-  (interactive)
-  (compile "cd ..; make") ;; asyn call, emacs doesn't wait for compilation end
-  (sleep-for 2)
-  (erl-reload-modules (erl-target-node))
-)
-(global-set-key [f8] 'my-sync) 
-  
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
 ; 
