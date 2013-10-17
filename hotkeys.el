@@ -62,6 +62,12 @@
   (newline-and-indent))
 (global-set-key (kbd "C-j") 'my-new-line)
 
+(defun my-grep()
+  (interactive)
+  (setq arg (format "grep -nH -e %s *" (word-at-point)))
+  (grep arg))
+(global-set-key (kbd "M-s s") 'my-grep)
+
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
 ; 
 ; Map Modifier-CyrillicLetter to the underlying Modifier-LatinLetter, so that
