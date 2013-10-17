@@ -27,18 +27,18 @@
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
 
 (defun clone-line-at-point ()
+  (beginning-of-line)
   (kill-region (line-beginning-position) (line-end-position))
   (yank)
   (newline)
-  (yank)
-  (newline))
+  (yank))
 
 (defun erl-spec ()
   "add -spec to erlang function"
   (interactive)
   (clone-line-at-point)
-  (previous-line 2)
   (beginning-of-line)
+  (previous-line)
   (insert "-spec(")
   (skip-chars-forward "^(")
   (forward-char)
@@ -48,7 +48,6 @@
 (defun erl-gen-server (S1 S2 S3 S4 S5)
   "help to generate gen_server code"
   (clone-line-at-point)
-  (previous-line)
   (beginning-of-line)
   (insert S1)
   (skip-chars-forward "^(")
