@@ -15,6 +15,7 @@
 
 ;;(set-face-attribute 'default nil :font "Monaco-15")
 (set-face-attribute 'default nil :font "Ubuntu Mono-13")
+(set-frame-size (selected-frame) 110 40)
 
 ;;(load-theme 'tango t)       ;; 5 light
 (load-theme 'tango-dark t)  ;; 5 dark 

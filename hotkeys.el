@@ -66,12 +66,11 @@
 (global-set-key (kbd "C-j") 'my-new-line)
 
 
-(defun my-grep()
+(defun grep-word-at-point()
   (interactive)
   (setq arg (format "grep -nH -e %s *" (word-at-point)))
   (grep arg))
-(global-set-key (kbd "M-s s") 'my-grep)
-
+(global-set-key (kbd "M-s s") 'grep-word-at-point)
 
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
