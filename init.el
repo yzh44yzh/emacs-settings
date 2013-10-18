@@ -13,7 +13,8 @@
 (setq mac-command-modifier 'meta)
 (global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
 
-(set-face-attribute 'default nil :font "Monaco-15")
+;;(set-face-attribute 'default nil :font "Monaco-15")
+(set-face-attribute 'default nil :font "Ubuntu Mono-13")
 
 ;;(load-theme 'tango t)       ;; 5 light
 (load-theme 'tango-dark t)  ;; 5 dark 
@@ -29,9 +30,11 @@
 ;;(load-theme 'adwaita t)     ;; 2 light
 ;;(load-theme 'light-blue t)  ;; 2 light
 
-
 ;; erlang mode
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.10/emacs")
+(add-to-list
+   'load-path
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+;;(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.10/emacs")
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -49,16 +52,6 @@
 ;;(require 'distel)
 ;;(distel-setup)
 
-;; haskell
-;;(add-to-list 'load-path "~/dev/haskell-mode/")
-;;(require 'haskell-mode-autoloads)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
-;;(set 'haskell-font-lock-symbols t)
-;;(put 'downcase-region 'disabled nil)
-
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -71,3 +64,8 @@
 
 
 
+;; markdown
+(load-file "~/.emacs.d/plugins/markdown-mode.el")
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
