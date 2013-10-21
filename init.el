@@ -13,8 +13,9 @@
 (setq mac-command-modifier 'meta)
 (global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
 
-(set-face-attribute 'default nil :font "Monaco-17")
+(set-face-attribute 'default nil :font "Monaco-15")
 ;;(set-face-attribute 'default nil :font "Ubuntu Mono-13")
+(set-frame-size (selected-frame) 120 44)
 
 ;;(load-theme 'tango t)       ;; 5 light
 (load-theme 'tango-dark t)  ;; 5 dark 

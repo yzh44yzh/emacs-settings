@@ -11,82 +11,73 @@
   (kill-region begin (point))
   (insert module-name))
 
+
 (defun erl-new-module (module-name)
   "create simple erlang module"
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/module_tpl.erl"))
+
 
 (defun erl-new-supervisor (module-name)
   "create supervisor erlang module"
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/supervisor_tpl.erl"))
 
+
 (defun erl-new-gen-server (module-name)
   "create gen-server erlang module"
   (interactive "MModule name:")
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
 
-(defun clone-line-at-point ()
-  (beginning-of-line)
-  (kill-region (line-beginning-position) (line-end-position))
-  (yank)
-  (newline)
-  (yank))
 
-(defun erl-spec ()
+(defun erl-spec () 
   "add -spec to erlang function"
   (interactive)
-  (clone-line-at-point)
-  (beginning-of-line)
+  (duplicate-line)
   (previous-line)
+  (beginning-of-line)
   (insert "-spec(")
   (skip-chars-forward "^(")
   (forward-char)
-  (delete-region (point) (line-end-position)))
+  (kill-line)
+  (setq kill-ring nil))
 (global-set-key (kbd "C-c C-d") 'erl-spec)
 
-(defun erl-gen-server (S1 S2 S3 S4 S5)
+
+(defun erl-gen-server (call-str handle-str) 
   "help to generate gen_server code"
-  (clone-line-at-point)
+  (duplicate-line)
   (beginning-of-line)
-  (insert S1)
   (skip-chars-forward "^(")
   (delete-char 1)
   (insert ", ")
   (skip-chars-forward "^)")
-  (delete-region (point) (line-end-position))
-  (insert S2)
-  (skip-chars-backward "^}")
-  (setq p1 (point))
-  (skip-chars-backward "^{")
-  (backward-char)
-  (setq p2 (point))
-  (kill-ring-save p2 p1)
-  (end-of-line)
+  (kill-line)
+  (beginning-of-line)
+  (kill-line)
+  (setq args (car kill-ring))
+  (insert (format call-str args))
   (newline 2)
-  (insert S3)
-  (yank)
-  (insert S4)
-  (newline)
-  (insert S5)
+  (insert (format handle-str args)) ;TODO put handle-str to proper position (before last handle_call)
   (previous-line)
-  (beginning-of-line))
+  (beginning-of-line)
+  (setq kill-ring nil))
+
 
 (defun erl-gen-server-call ()
   "generate gen_server:call"
   (interactive)
   (erl-gen-server 
-  "    gen_server:call(?MODULE, {" "})."
-  "handle_call(" ", _From, State) ->"
-  "    {reply, Reply, State};"))
+   "    gen_server:call(?MODULE, {%s})."
+   "handle_call({%s}, _From, State) ->\n    {reply, Reply, State};"))
 (global-set-key (kbd "C-c C-g") 'erl-gen-server-call)
+
 
 (defun erl-gen-server-cast ()
   "generate gen_server:cast"
   (interactive)
   (erl-gen-server 
-  "    gen_server:cast(?MODULE, {" "}), ok."
-  "handle_cast(" ", State) ->"
-  "    {noreply, State};"))
+   "    gen_server:cast(?MODULE, {%s}),\n    ok."
+   "handle_cast({%s}, State) ->\n    {noreply, State};"))
 (global-set-key (kbd "C-c M-g") 'erl-gen-server-cast)
 
