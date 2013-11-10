@@ -1,6 +1,7 @@
 (setq inhibit-startup-message t)
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1) ;; highlight matching parensesis
+(setq show-paren-style 'expression)
 (setq-default indent-tabs-mode nil) ;; spaces instead of tabs
 (setq-default tab-width 4)
 (setq make-backup-files nil) 

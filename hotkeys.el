@@ -1,12 +1,18 @@
 ;; 57.4.6 Rebinding Keys in Your Init File
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
+;; often used
+(global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
+(global-set-key (kbd "C-'") 'save-buffer) ;; no default
 
 ;; more useful hotkeys:
 (global-set-key [C-return] 'complete-symbol)    ;; no default
 (global-set-key (kbd "C-M-s") 'grep)            ;; default is isearch-forward-regexp
 (global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
 (global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j) 
+
+;; sometimes need to call on mac
+(global-set-key (kbd "<f2>") 'redraw-display)   ;; no default
 
 
 ;; shadow bad hotkeys:
