@@ -3,8 +3,8 @@
 
 ;; often used
 (global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
-(global-set-key (kbd "C-'") 'save-buffer) ;; no default
-(global-set-key (kbd "C-x C-k") 'kill-buffer) ;; no default
+(global-set-key (kbd "C-'") 'save-buffer)       ;; no default
+(global-set-key (kbd "C-x C-k") 'kill-buffer)   ;; no default
 
 ;; more useful hotkeys:
 (global-set-key [C-return] 'complete-symbol)    ;; no default
@@ -21,10 +21,8 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; shadow bad hotkeys:
-;; I never want to put emacs to background
-(global-set-key (kbd "C-z") 'undo)            ;; default is to put emacs to background
-;; very ofter press it when I want switch buffer with C-x b
-(global-set-key (kbd "C-x C-b") 'ido-switch-buffer) ;; default is list-buffers,
+(global-set-key (kbd "C-z") 'undo)        ;; default is to put emacs to background
+(global-set-key (kbd "C-x C-b") 'ibuffer) ;; default is list-buffers,
 
 
 ;; copy region if it exists

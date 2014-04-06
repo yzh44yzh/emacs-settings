@@ -33,6 +33,30 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(load-file "~/.emacs.d/erl-utils.el")
+(load-file "~/.emacs.d/hotkeys.el")
+(load-file "~/.emacs.d/plugins/ecmascript-mode.el")
+
+;; -------------
+;; ido, ibuffer
+;; -------------
+
+(require 'ido)
+(ido-mode t)
+
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
+;; https://github.com/purcell/ibuffer-vc
+;; Let Emacs' ibuffer-mode group files by git project etc., and show file state
+(load-file "~/.emacs.d/elpa/cl-lib-0.5/cl-lib.el")
+(load-file "~/.emacs.d/ibuffer-vc.el")
+
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (ibuffer-vc-set-filter-groups-by-vc-root)
+            (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic))))
+
 ;; -------------
 ;; erlang mode
 ;; -------------
@@ -76,6 +100,7 @@
     (list path (list local-file))))
 
 ;; https://github.com/ten0s/syntaxerl/
+;; syntax checker tool for Erlang
 (defun flymake-syntaxerl ()
   (flymake-compile-script-path "~/bin/syntaxerl"))
 
@@ -92,14 +117,6 @@
      ;; should be the last.
      (flymake-mode 1)
 ))
-
-
-;; -------------
-;; ido
-;; -------------
-
-(require 'ido)
-(ido-mode t)
 
 
 ;; -------------
@@ -149,12 +166,3 @@
 (load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-
-
-;; ------------
-
-(load-file "~/.emacs.d/erl-utils.el")
-(load-file "~/.emacs.d/hotkeys.el")
-
-(load-file "~/.emacs.d/plugins/ecmascript-mode.el")
-(add-to-list 'auto-mode-alist '("\\.as?$" . ecmascript-mode))
