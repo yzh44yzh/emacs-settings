@@ -4,25 +4,30 @@
 ;; often used
 (global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
 (global-set-key (kbd "C-'") 'save-buffer) ;; no default
+(global-set-key (kbd "C-x C-k") 'kill-buffer) ;; no default
 
 ;; more useful hotkeys:
 (global-set-key [C-return] 'complete-symbol)    ;; no default
 (global-set-key (kbd "C-M-s") 'grep)            ;; default is isearch-forward-regexp
 (global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
-(global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j) 
+(global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j)
 
 ;; sometimes need to call on mac
 (global-set-key (kbd "<f2>") 'redraw-display)   ;; no default
 
+;; org-mode
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 ;; shadow bad hotkeys:
 ;; I never want to put emacs to background
 (global-set-key (kbd "C-z") 'undo)            ;; default is to put emacs to background
 ;; very ofter press it when I want switch buffer with C-x b
-(global-set-key (kbd "C-x C-b") 'ido-switch-buffer) ;; default is list-buffers, 
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer) ;; default is list-buffers,
 
 
-;; copy region if it exists 
+;; copy region if it exists
 ;; or copy current line if region not exists
 ;; to internal and to system buffer
 (defun my-copy()
@@ -37,7 +42,7 @@
 (global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
 
 
-;; cut region if it exists 
+;; cut region if it exists
 ;; or cut current line if region not exists
 ;; to internal and to system buffer
 (defun my-cut()
@@ -62,7 +67,7 @@
   (newline)
   (yank)
   (setq kill-ring nil))
-(global-set-key (kbd "C-M-d") 'duplicate-line) 
+(global-set-key (kbd "C-M-d") 'duplicate-line)
 
 
 (defun my-new-line()
@@ -80,7 +85,7 @@
 
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
-; 
+;
 ; Map Modifier-CyrillicLetter to the underlying Modifier-LatinLetter, so that
 ; control sequences can be used when keyboard mapping is changed outside of
 ; Emacs.
