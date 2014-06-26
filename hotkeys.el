@@ -12,9 +12,6 @@
 (global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
 (global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j)
 
-;; sometimes need to call on mac
-(global-set-key (kbd "<f2>") 'redraw-display)   ;; no default
-
 ;; org-mode
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
@@ -23,6 +20,11 @@
 ;; shadow bad hotkeys:
 (global-set-key (kbd "C-z") 'undo)        ;; default is to put emacs to background
 (global-set-key (kbd "C-x C-b") 'ibuffer) ;; default is list-buffers,
+
+;; tags
+(global-set-key (kbd "M-,") 'pop-tag-mark) ;; default is tags-loop-continue
+
+(global-set-key (kbd "C-M-M") 'magit-status) ;; default is 'return'
 
 
 ;; copy region if it exists
@@ -72,7 +74,7 @@
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
-(global-set-key (kbd "C-j") 'my-new-line)
+(global-set-key (kbd "C-j") 'my-new-line) ;; default is newline-and-indent
 
 
 (defun grep-word-at-point()

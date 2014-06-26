@@ -37,6 +37,16 @@
 (load-file "~/.emacs.d/hotkeys.el")
 (load-file "~/.emacs.d/plugins/ecmascript-mode.el")
 
+;; ------------
+;; packages
+;; ------------
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+
+
 ;; -------------
 ;; ido, ibuffer
 ;; -------------
@@ -89,7 +99,7 @@
 
 (require 'erlang-flymake)
 
-(setq flymake-log-level 3)
+(setq flymake-log-level 1)
 
 (defun flymake-compile-script-path (path)
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -129,8 +139,6 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (put 'downcase-region 'disabled nil)
 
-(package-initialize)
-
 
 ;; -------------
 ;; org-mode
@@ -162,7 +170,6 @@
 ;; haskell-mode
 ;; -------------
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode/")
-(load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
