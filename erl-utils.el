@@ -30,13 +30,13 @@
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
 
 
-(defun erl-spec () 
+(defun erl-spec ()
   "add -spec to erlang function"
   (interactive)
   (duplicate-line)
   (previous-line)
   (beginning-of-line)
-  (insert "-spec(")
+  (insert "-spec ")
   (skip-chars-forward "^(")
   (forward-char)
   (kill-line)
@@ -44,7 +44,7 @@
 (global-set-key (kbd "C-c C-d") 'erl-spec)
 
 
-(defun erl-gen-server (call-str handle-str) 
+(defun erl-gen-server (call-str handle-str)
   "help to generate gen_server code"
   (duplicate-line)
   (beginning-of-line)
@@ -67,7 +67,7 @@
 (defun erl-gen-server-call ()
   "generate gen_server:call"
   (interactive)
-  (erl-gen-server 
+  (erl-gen-server
    "    gen_server:call(?MODULE, {%s})."
    "handle_call({%s}, _From, State) ->\n    {reply, Reply, State};"))
 (global-set-key (kbd "C-c C-g") 'erl-gen-server-call)
@@ -76,8 +76,7 @@
 (defun erl-gen-server-cast ()
   "generate gen_server:cast"
   (interactive)
-  (erl-gen-server 
+  (erl-gen-server
    "    gen_server:cast(?MODULE, {%s}),\n    ok."
    "handle_cast({%s}, State) ->\n    {noreply, State};"))
 (global-set-key (kbd "C-c M-g") 'erl-gen-server-cast)
-

@@ -35,6 +35,7 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 (load-file "~/.emacs.d/hotkeys.el")
+(load-file "~/.emacs.d/abbrev.el")
 (load-file "~/.emacs.d/plugins/ecmascript-mode.el")
 
 ;; ------------
@@ -73,7 +74,7 @@
 
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/local/lib/erlang_R17_3/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -146,6 +147,7 @@
 
 (setq org-agenda-files (list
                         "~/Dropbox/org/andr.org"
+                        "~/Dropbox/org/beug.org"
                         "~/Dropbox/org/education.org"
                         "~/Dropbox/org/emacs.org"
                         "~/Dropbox/org/fizo.org"
@@ -154,6 +156,7 @@
                         "~/Dropbox/org/loginov.org"
                         "~/Dropbox/org/music.org"
                         "~/Dropbox/org/root.org"
+                        "~/Dropbox/org/life.org"
                         "~/Dropbox/org/ideas/ai-music.org"
                         "~/Dropbox/org/ideas/emacs-tutor.org"
                         "~/Dropbox/org/ideas/erlang-graph-db.org"
@@ -166,6 +169,7 @@
                         "~/Dropbox/org/ideas/yzh44yzh.org"))
 
 
+
 ;; -------------
 ;; haskell-mode
 ;; -------------
@@ -173,3 +177,29 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
+
+;; -------------
+;; c++-mode
+;; -------------
+
+(c-add-style "my-cpp-style"
+	     '("stroustrup"
+	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
+	       (c-basic-offset . 4)            ; indent by four spaces
+           ))
+
+(defun my-c++-mode-hook ()
+  (c-set-style "my-cpp-style")
+  (auto-fill-mode)
+  (c-toggle-auto-hungry-state 1)
+  (c-toggle-auto-newline -1)
+  )
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+
+;; -------------
+;; other stuff :)
+;; -------------
+
+(setq tetris-score-file "~/.emacs.d/tetris-scores")

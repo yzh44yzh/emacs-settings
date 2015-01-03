@@ -109,3 +109,15 @@
 
 (global-set-key (kbd "M-Б") 'beginning-of-buffer)
 (global-set-key (kbd "M-Ю") 'end-of-buffer)
+
+
+(defun insert_org_code ()
+  (interactive)
+  (beginning-of-line)
+  (insert "#+BEGIN_SRC Erlang\n")
+  (insert "\n")
+  (insert "#+END_SRC\n")
+  (previous-line)
+  (previous-line)
+  (beginning-of-line))
+(global-set-key (kbd "<f5>") 'insert_org_code)
