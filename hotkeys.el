@@ -3,7 +3,7 @@
 
 ;; often used
 (global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
-(global-set-key (kbd "C-'") 'save-buffer)       ;; no default
+(global-set-key (kbd "<f4>") 'save-buffer)      ;; no default
 (global-set-key (kbd "C-x C-k") 'kill-buffer)   ;; no default
 
 ;; more useful hotkeys:

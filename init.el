@@ -5,12 +5,13 @@
 (setq-default indent-tabs-mode nil) ;; spaces instead of tabs
 (setq-default tab-width 4)
 (setq make-backup-files nil)
-(setq auto-save-default nil)
+(setq auto-save-default t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
+(setq-default sgml-basic-offset 4)
 
 (global-font-lock-mode t) ;; need for org-mode
 
@@ -73,7 +74,7 @@
 
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -145,25 +146,14 @@
 ;; -------------
 
 (setq org-agenda-files (list
-                        "~/Dropbox/org/andr.org"
-                        "~/Dropbox/org/education.org"
-                        "~/Dropbox/org/emacs.org"
-                        "~/Dropbox/org/fizo.org"
-                        "~/Dropbox/org/fluxbox.org"
-                        "~/Dropbox/org/home.org"
-                        "~/Dropbox/org/loginov.org"
-                        "~/Dropbox/org/music.org"
                         "~/Dropbox/org/root.org"
-                        "~/Dropbox/org/ideas/ai-music.org"
-                        "~/Dropbox/org/ideas/emacs-tutor.org"
-                        "~/Dropbox/org/ideas/erlang-graph-db.org"
-                        "~/Dropbox/org/ideas/erlang-school.org"
-                        "~/Dropbox/org/ideas/light-thread.org"
-                        "~/Dropbox/org/ideas/music-tutor.org"
-                        "~/Dropbox/org/ideas/presentation-generator.org"
-                        "~/Dropbox/org/ideas/record2proplist.org"
-                        "~/Dropbox/org/ideas/self-education-planning-app.org"
-                        "~/Dropbox/org/ideas/yzh44yzh.org"))
+                        "~/Dropbox/org/education.org"
+                        "~/Dropbox/org/beug.org"
+                        "~/Dropbox/org/life.org"
+                        "~/Dropbox/org/fizo.org"
+                        "~/Dropbox/org/home.org"
+                        "~/Dropbox/org/music.org"
+                        "~/Dropbox/org/emacs.org"))
 
 
 ;; -------------
@@ -173,3 +163,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
+
+
+(add-hook 'xml-mode-hook
+          (lambda ()
+            (set (make-local-variable 'sgml-basic-offset) 4)))
