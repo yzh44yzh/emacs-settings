@@ -36,6 +36,7 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 (load-file "~/.emacs.d/hotkeys.el")
+(load-file "~/.emacs.d/abbrev.el")
 (load-file "~/.emacs.d/plugins/ecmascript-mode.el")
 
 ;; ------------
@@ -74,7 +75,7 @@
 
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -152,9 +153,7 @@
                         "~/Dropbox/org/life.org"
                         "~/Dropbox/org/fizo.org"
                         "~/Dropbox/org/home.org"
-                        "~/Dropbox/org/music.org"
-                        "~/Dropbox/org/emacs.org"))
-
+                        "~/Dropbox/org/music.org"))
 
 ;; -------------
 ;; haskell-mode
@@ -164,7 +163,28 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
 
+;; -------------
+;; c++-mode
+;; -------------
 
-(add-hook 'xml-mode-hook
-          (lambda ()
-            (set (make-local-variable 'sgml-basic-offset) 4)))
+(c-add-style "my-cpp-style"
+	     '("stroustrup"
+	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
+	       (c-basic-offset . 4)            ; indent by four spaces
+           ))
+
+(defun my-c++-mode-hook ()
+  (c-set-style "my-cpp-style")
+  (auto-fill-mode)
+  (c-toggle-auto-hungry-state 1)
+  (c-toggle-auto-newline -1)
+  )
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+
+;; -------------
+;; other stuff :)
+;; -------------
+
+(setq tetris-score-file "~/.emacs.d/tetris-scores")
