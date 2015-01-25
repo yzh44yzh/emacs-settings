@@ -121,3 +121,15 @@
   (previous-line)
   (beginning-of-line))
 (global-set-key (kbd "<f5>") 'insert_org_code)
+
+
+(defun normal-font ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
+(global-set-key (kbd "<f9>") 'normal-font)
+
+
+(defun presentation-font ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Ubuntu Mono-17"))
+(global-set-key (kbd "<f8>") 'presentation-font)
