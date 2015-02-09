@@ -147,13 +147,11 @@
 ;; -------------
 
 (setq org-agenda-files (list
-                        "~/Dropbox/org/root.org"
-                        "~/Dropbox/org/education.org"
                         "~/Dropbox/org/beug.org"
-                        "~/Dropbox/org/life.org"
-                        "~/Dropbox/org/fizo.org"
+                        "~/Dropbox/org/education.org"
+                        "~/Dropbox/org/emacs.org"
                         "~/Dropbox/org/home.org"
-                        "~/Dropbox/org/music.org"))
+                        "~/Dropbox/org/root.org"))
 
 ;; -------------
 ;; haskell-mode
