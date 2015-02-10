@@ -86,7 +86,7 @@
 (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
 
 (setq erlang-root-dir "/usr/local/lib/erlang")
-(setq erlang-electric-commands nil)
+(setq erlang-electric-commands nil) ;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html#id63595
 (setq erlang-compile-outdir "../ebin")
 
 (defvar erlang-compile-extra-opts
