@@ -86,7 +86,7 @@
 (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
 
 (setq erlang-root-dir "/usr/local/lib/erlang")
-(setq erlang-electric-commands nil)
+(setq erlang-electric-commands nil) ;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html#id63595
 (setq erlang-compile-outdir "../ebin")
 
 (defvar erlang-compile-extra-opts
@@ -147,13 +147,11 @@
 ;; -------------
 
 (setq org-agenda-files (list
-                        "~/Dropbox/org/root.org"
-                        "~/Dropbox/org/education.org"
                         "~/Dropbox/org/beug.org"
-                        "~/Dropbox/org/life.org"
-                        "~/Dropbox/org/fizo.org"
+                        "~/Dropbox/org/education.org"
+                        "~/Dropbox/org/emacs.org"
                         "~/Dropbox/org/home.org"
-                        "~/Dropbox/org/music.org"))
+                        "~/Dropbox/org/root.org"))
 
 ;; -------------
 ;; haskell-mode
