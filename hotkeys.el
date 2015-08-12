@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-M-s") 'grep)            ;; default is isearch-forward-regexp
 (global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
 (global-set-key (kbd "C-M-j") 'delete-indentation) ;; default is indent-new-comment line (also M-j)
+(global-set-key "\C-o" 'other-window)              ;; default is open-line
 
 ;; org-mode
 (global-set-key "\C-cl" 'org-store-link)
@@ -131,5 +132,5 @@
 
 (defun presentation-font ()
   (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-17"))
+  (set-face-attribute 'default nil :font "Ubuntu Mono-22"))
 (global-set-key (kbd "<f8>") 'presentation-font)
