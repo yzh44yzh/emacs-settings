@@ -36,7 +36,6 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 (load-file "~/.emacs.d/hotkeys.el")
-(load-file "~/.emacs.d/abbrev.el")
 (load-file "~/.emacs.d/plugins/ecmascript-mode.el")
 
 ;; ------------
