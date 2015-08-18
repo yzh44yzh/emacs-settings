@@ -74,7 +74,7 @@
 
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
