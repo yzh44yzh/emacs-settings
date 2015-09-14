@@ -24,8 +24,12 @@
 
 ;; tags
 (global-set-key (kbd "M-,") 'pop-tag-mark) ;; default is tags-loop-continue
-
 (global-set-key (kbd "C-M-M") 'magit-status) ;; default is 'return'
+
+;; neotree
+(global-set-key (kbd "<f3>") 'neotree-toggle)
+(global-set-key (kbd "<f4>") 'neotree-find)
+
 
 
 ;; copy region if it exists
