@@ -1,28 +1,32 @@
 -module(supervisor_tpl).
--author('Yura Zhloba <yzh44yzh@gmail.com>').
 
 -behaviour(supervisor).
 
 -export([start_link/0, init/1]).
+-include("otp_types.hrl").
 
+
+-spec(start_link() -> {ok, pid()}).
 start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 
-init([]) ->
-    RestartStrategy = one_for_one, % one_for_one | one_for_all | rest_for_one
-    MaxRestarts = 10,
-    MaxSecondsBetweenRestarts = 60,
-    SupFlags = {RestartStrategy, MaxRestarts, MaxSecondsBetweenRestarts},
+-spec(init(gs_args()) -> sup_init_reply()).
+init(_Args) ->
+    SupervisorSpecification =
+        #{strategy => one_for_one, % one_for_one | one_for_all | rest_for_one
+          intensity => 10, % max restarts
+          period => 1000 % in period of time
+         },
 
-    Restart = permanent, % permanent | transient | temporary
-    Shutdown = 2000,     % brutal_kill | int() >= 0 | infinity
-    Type = worker,       % worker | supervisor
-
-    AChild = {'AName', % used to identify the child spec internally by the supervisor
-	      {'AModule', start_link, []}, % StartFun = {M, F, A}
-	      Restart, Shutdown, Type, 
-	      ['AModule']}, % Modules  = [Module] | dynamic
-
-    {ok, {SupFlags, [AChild]}}.
-
+    ChildSpecifications =
+        [
+         #{id => some_worker,
+           start => {some_worker, start_link, []},
+           restart => permanent, % permanent | transient | temporary
+           shutdown => 2000, % milliseconds | brutal_kill | infinity
+           type => worker, % worker | supervisor
+           modules => [some_worker]
+          }
+        ],
+    {ok, {SupervisorSpecification, ChildSpecifications}}.

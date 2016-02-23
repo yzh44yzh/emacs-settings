@@ -74,7 +74,7 @@
 
 (add-to-list
    'load-path
-       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/erlang/lib/tools-*/emacs")))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -89,7 +89,12 @@
 (setq erlang-compile-outdir "../ebin")
 
 (defvar erlang-compile-extra-opts
-  '(bin_opt_info debug_info (i . "../include") (i . "../../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
+  '(bin_opt_info debug_info
+                 (i . "../include")
+                 (i . "../deps")
+                 (i . "../../../deps")
+                 (i . "~/dev/erl_libs")
+                 ))
 
 (require 'erlang-start)
 
