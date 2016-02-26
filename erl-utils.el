@@ -30,6 +30,12 @@
   (erl-new-file module-name "~/.emacs.d/tpl/gen_server_tpl.erl"))
 
 
+(defun erl-new-cowboy-handler (module-name)
+  "create cowboy handler erlang module"
+  (interactive "MModule name:")
+  (erl-new-file module-name "~/.emacs.d/tpl/cowboy_handler_tpl.erl"))
+
+
 (defun erl-spec ()
   "add -spec to erlang function"
   (interactive)
