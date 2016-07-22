@@ -132,5 +132,5 @@
 
 (defun presentation-font ()
   (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-22"))
+  (set-face-attribute 'default nil :font "Ubuntu Mono-18"))
 (global-set-key (kbd "<f8>") 'presentation-font)

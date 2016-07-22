@@ -145,44 +145,27 @@
 ;; -------------
 ;; org-mode
 ;; -------------
-
 (setq org-agenda-files (list
-                        "~/Dropbox/org/beug.org"
+                        "~/Dropbox/org/community.org"
+                        "~/Dropbox/org/dev.org"
                         "~/Dropbox/org/education.org"
-                        "~/Dropbox/org/emacs.org"
+                        "~/Dropbox/org/fizo.org"
                         "~/Dropbox/org/home.org"
                         "~/Dropbox/org/root.org"))
 
 ;; -------------
-;; haskell-mode
+;; Ocaml
 ;; -------------
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
+(require 'cl)
+(require 'tuareg)
 
-;; -------------
-;; c++-mode
-;; -------------
+(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist))
 
-(c-add-style "my-cpp-style"
-	     '("stroustrup"
-	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
-	       (c-basic-offset . 4)            ; indent by four spaces
-           ))
-
-(defun my-c++-mode-hook ()
-  (c-set-style "my-cpp-style")
-  (auto-fill-mode)
-  (c-toggle-auto-hungry-state 1)
-  (c-toggle-auto-newline -1)
-  )
-
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-
-
-;; -------------
-;; other stuff :)
-;; -------------
-
-(setq tetris-score-file "~/.emacs.d/tetris-scores")
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+(setq merlin-use-auto-complete-mode t)
+(setq merlin-error-after-save nil)
