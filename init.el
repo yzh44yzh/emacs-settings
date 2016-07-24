@@ -36,7 +36,7 @@
 
 (load-file "~/.emacs.d/erl-utils.el")
 (load-file "~/.emacs.d/hotkeys.el")
-(load-file "~/.emacs.d/plugins/ecmascript-mode.el")
+
 
 ;; ------------
 ;; packages
@@ -49,7 +49,7 @@
 
 
 ;; -------------
-;; ido, ibuffer
+;; ido
 ;; -------------
 
 (require 'ido)
@@ -57,16 +57,6 @@
 
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-;; https://github.com/purcell/ibuffer-vc
-;; Let Emacs' ibuffer-mode group files by git project etc., and show file state
-(load-file "~/.emacs.d/elpa/cl-lib-0.5/cl-lib.el")
-(load-file "~/.emacs.d/ibuffer-vc.el")
-
-(add-hook 'ibuffer-hook
-          (lambda ()
-            (ibuffer-vc-set-filter-groups-by-vc-root)
-            (unless (eq ibuffer-sorting-mode 'alphabetic)
-              (ibuffer-do-sort-by-alphabetic))))
 
 ;; -------------
 ;; erlang mode
@@ -91,9 +81,6 @@
 (defvar erlang-compile-extra-opts
   '(bin_opt_info debug_info
                  (i . "../include")
-                 (i . "../deps")
-                 (i . "../../../deps")
-                 (i . "~/dev/erl_libs")
                  ))
 
 (require 'erlang-start)
@@ -136,57 +123,13 @@
 
 
 ;; -------------
-;; markdown
-;; -------------
-
-(load-file "~/.emacs.d/plugins/markdown-mode.el")
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(put 'downcase-region 'disabled nil)
-
-
-;; -------------
 ;; org-mode
 ;; -------------
 
 (setq org-agenda-files (list
-                        "~/Dropbox/org/beug.org"
+                        "~/Dropbox/org/community.org"
+                        "~/Dropbox/org/dev.org"
                         "~/Dropbox/org/education.org"
-                        "~/Dropbox/org/emacs.org"
+                        "~/Dropbox/org/fizo.org"
                         "~/Dropbox/org/home.org"
                         "~/Dropbox/org/root.org"))
-
-;; -------------
-;; haskell-mode
-;; -------------
-
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
-
-;; -------------
-;; c++-mode
-;; -------------
-
-(c-add-style "my-cpp-style"
-	     '("stroustrup"
-	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
-	       (c-basic-offset . 4)            ; indent by four spaces
-           ))
-
-(defun my-c++-mode-hook ()
-  (c-set-style "my-cpp-style")
-  (auto-fill-mode)
-  (c-toggle-auto-hungry-state 1)
-  (c-toggle-auto-newline -1)
-  )
-
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-
-
-;; -------------
-;; other stuff :)
-;; -------------
-
-(setq tetris-score-file "~/.emacs.d/tetris-scores")
