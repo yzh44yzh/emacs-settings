@@ -15,22 +15,18 @@
 
 (global-font-lock-mode t) ;; need for org-mode
 
-(set-face-attribute 'default nil :font "Ubuntu Mono-13")
 ;;(set-frame-size (selected-frame) 100 33)
 
-;;(load-theme 'tango t)       ;; 5 light
-(load-theme 'tango-dark t)  ;; 5 dark
-;;(load-theme 'tsdh-dark t)   ;; 5 dark
-;;(load-theme 'wombat t)      ;; 5 dark
-;;(load-theme 'wheatgrass t)  ;; 4 dark
-;;(load-theme 'misterioso t)  ;; 4 dark
-;;(load-theme 'deeper-blue t) ;; 3 dark
-;;(load-theme 'manoj-dark t)  ;; 3 dark
-;;(load-theme 'dichromacy t)  ;; 3 light
-;;(load-theme 'tsdh-light t)  ;; 3 light
-;;(load-theme 'whiteboard t)  ;; 3 light
-;;(load-theme 'adwaita t)     ;; 2 light
-;;(load-theme 'light-blue t)  ;; 2 light
+(if (eq system-type 'darwin)
+    (set-face-attribute 'default nil :font "Monaco-17")
+    (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
+
+(when (eq system-type 'darwin) ;; mac specific settings
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'meta)
+  )
+
+(load-theme 'tango-dark t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -62,9 +58,14 @@
 ;; erlang mode
 ;; -------------
 
-(add-to-list
-   'load-path
-       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/erlang/lib/tools-*/emacs")))
+
+(if (eq system-type 'darwin)
+    (add-to-list
+     'load-path
+     (car (file-expand-wildcards "/Users/y_zhloba/.erlangInstaller/19.2/lib/tools-*/emacs")))
+    (add-to-list
+     'load-path
+     (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs"))))
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
@@ -74,7 +75,7 @@
 (add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
 (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
 
-(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq erlang-root-dir "/Users/y_zhloba/.erlangInstaller/19.2/")
 (setq erlang-electric-commands nil) ;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html#id63595
 (setq erlang-compile-outdir "../ebin")
 
@@ -140,23 +141,6 @@
 
 
 ;; -------------
-;; Ocaml
-;; -------------
-
-(require 'cl)
-(require 'tuareg)
-
-(setq auto-mode-alist
-      (append '(("\\.ml[ily]?$" . tuareg-mode)
-                ("\\.topml$" . tuareg-mode))
-              auto-mode-alist))
-
-;; (add-hook 'tuareg-mode-hook 'merlin-mode)
-;; (setq merlin-use-auto-complete-mode t)
-;; (setq merlin-error-after-save nil)
-
-
-;; -------------
 ;; org-mode
 ;; -------------
 
@@ -181,4 +165,18 @@
 ;; yaml-mode
 ;; -------------
 
-(add-to-list 'auto-mode-alist '(".*\\.raml\\'" . yaml-mode))
+;; (add-to-list 'auto-mode-alist '(".*\\.raml\\'" . yaml-mode))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (haskell-mode merlin tuareg markdown-mode neotree cl-lib-highlight))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
