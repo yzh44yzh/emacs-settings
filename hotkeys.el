@@ -21,6 +21,8 @@
 ;; shadow bad hotkeys:
 (global-set-key (kbd "C-z") 'undo)        ;; default is to put emacs to background
 (global-set-key (kbd "C-x C-b") 'ibuffer) ;; default is list-buffers,
+(global-set-key (kbd "C-x C-h") 'mark-whole-buffer) ;; default is 'Key translations ...'
+
 
 ;; tags
 (global-set-key (kbd "M-,") 'pop-tag-mark) ;; default is tags-loop-continue
