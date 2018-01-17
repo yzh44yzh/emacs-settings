@@ -1,6 +1,38 @@
 ;; 57.4.6 Rebinding Keys in Your Init File
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
+;; standard hotkeys
+;; (global-set-key (kbd "M-x") 'kill-region) conflict with exec, C-x also
+(global-set-key (kbd "C-c") 'kill-ring-save) ;; Copy
+(global-set-key (kbd "C-v") 'yank)           ;; Paste
+(global-set-key (kbd "M-v") 'yank-pop)       ;; Paste from history
+
+(global-set-key (kbd "C-z") 'undo)           ;; Undo
+(global-set-key (kbd "C-S-z") 'redo)         ;; Redo
+
+(global-set-key (kbd "C-S-s") 'save-some-buffers) ;; Save All
+(global-set-key (kbd "C-S-a") 'mark-whole-buffer) ;; Select All
+(global-set-key (kbd "C-r") 'query-replace)       ;; Replace
+
+
+;; Vim-like cursor move
+;;   i
+;; j k l
+;; https://tonsky.livejournal.com/314598.html
+(global-set-key (kbd "C-l") 'forward-char)
+(global-set-key (kbd "C-j") 'backward-char)
+(global-set-key (kbd "C-k") 'next-line)
+(global-set-key (kbd "C-i") 'previous-line)
+(global-set-key (kbd "M-l") 'forward-word)
+(global-set-key (kbd "M-j") 'backward-word)
+(global-set-key (kbd "M-k") 'scroll-up)   ;; Page Down
+(global-set-key (kbd "M-i") 'scroll-down) ;; Page Up
+
+(global-set-key (kbd "C-M-k") 'kill-line)
+(global-set-key (kbd "C-m") 'newline-and-indent)
+(global-set-key (kbd "C-M-m") 'delete-indentation) ;; TODO conflict with magit-status
+
+
 ;; often used
 (global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
 (global-set-key (kbd "M-s M-s") 'save-buffer)   ;; no default
@@ -14,9 +46,10 @@
 (global-set-key "\C-o" 'other-window)              ;; default is open-line
 
 ;; org-mode
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
+;; TODO need other hotkeys
+;; (global-set-key "\C-cl" 'org-store-link)
+;; (global-set-key "\C-ca" 'org-agenda)
+;; (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; shadow bad hotkeys:
 (global-set-key (kbd "C-z") 'undo)        ;; default is to put emacs to background
@@ -81,7 +114,7 @@
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
-(global-set-key (kbd "C-j") 'my-new-line) ;; default is newline-and-indent
+(global-set-key (kbd "C-m") 'my-new-line) ;; default is newline-and-indent
 
 
 (defun grep-word-at-point()
