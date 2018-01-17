@@ -79,7 +79,7 @@
     (save-excursion
       (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
       (kill-ring-save (line-beginning-position) (+ 1 (line-end-position))))))
-(global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
+(global-set-key (kbd "C-c") 'my-copy) ;; default is kill-ring-save
 
 
 ;; cut region if it exists
