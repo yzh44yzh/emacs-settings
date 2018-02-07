@@ -22,8 +22,25 @@
   (setq mac-command-modifier 'meta)
   )
 
-; (load-theme 'tango-dark t)
-(load-theme 'tango t)
+;; Color themes
+;; Light:
+(load-theme 'leuven t)
+;; (load-theme 'dichromacy t)
+;; (load-theme 'tsdh-light t)
+;; (load-theme 'adwaita t) ;; grey
+;; (load-theme 'light-blue t) ;; blue
+;; (load-theme 'tango t) ;; grey
+;; Dark:
+;; (load-theme 'tango-dark t)
+;; (load-theme 'deeper-blue t)
+;; (load-theme 'manoj-dark t)
+;; (load-theme 'misterioso t)
+;; (load-theme 'tango-dark t)
+;; (load-theme 'wheatgrass t)
+;; (load-theme 'wombat t)
+;; (load-theme 'tsdh-dark t)
+
+
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
