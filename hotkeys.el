@@ -3,34 +3,33 @@
 
 ;; standard hotkeys
 ;; (global-set-key (kbd "M-x") 'kill-region) conflict with exec, C-x also
-(global-set-key (kbd "C-c") 'kill-ring-save) ;; Copy
-(global-set-key (kbd "C-v") 'yank)           ;; Paste
-(global-set-key (kbd "M-v") 'yank-pop)       ;; Paste from history
-
-(global-set-key (kbd "C-z") 'undo)           ;; Undo
-(global-set-key (kbd "C-S-z") 'redo)         ;; Redo
-
-(global-set-key (kbd "C-S-s") 'save-some-buffers) ;; Save All
-(global-set-key (kbd "C-S-a") 'mark-whole-buffer) ;; Select All
-(global-set-key (kbd "C-r") 'query-replace)       ;; Replace
+;; (global-set-key (kbd "C-c") 'kill-ring-save) ;; Copy
+;; (global-set-key (kbd "C-v") 'yank)           ;; Paste
+;; (global-set-key (kbd "M-v") 'yank-pop)       ;; Paste from history
+;; (global-set-key (kbd "C-z") 'undo)           ;; Undo
+;; (global-set-key (kbd "C-S-z") 'redo)         ;; Redo
+;; (global-set-key (kbd "C-S-s") 'save-some-buffers) ;; Save All
+;; (global-set-key (kbd "C-S-a") 'mark-whole-buffer) ;; Select All
+;; (global-set-key (kbd "C-r") 'query-replace)       ;; Replace
 
 
 ;; Vim-like cursor move
 ;;   i
 ;; j k l
 ;; https://tonsky.livejournal.com/314598.html
-(global-set-key (kbd "C-l") 'forward-char)
-(global-set-key (kbd "C-j") 'backward-char)
-(global-set-key (kbd "C-k") 'next-line)
-(global-set-key (kbd "C-i") 'previous-line)
-(global-set-key (kbd "M-l") 'forward-word)
-(global-set-key (kbd "M-j") 'backward-word)
-(global-set-key (kbd "M-k") 'scroll-up)   ;; Page Down
-(global-set-key (kbd "M-i") 'scroll-down) ;; Page Up
+;; (global-set-key (kbd "C-l") 'forward-char)
+;; (global-set-key (kbd "C-j") 'backward-char)
+;; (global-set-key (kbd "C-k") 'next-line)
+;; (global-set-key (kbd "C-i") 'previous-line)
+;; (global-set-key (kbd "M-l") 'forward-word)
+;; (global-set-key (kbd "M-j") 'backward-word)
+;; (global-set-key (kbd "M-k") 'scroll-up)   ;; Page Down
+;; (global-set-key (kbd "M-i") 'scroll-down) ;; Page Up
 
-(global-set-key (kbd "C-M-k") 'kill-line)
-(global-set-key (kbd "C-m") 'newline-and-indent)
-(global-set-key (kbd "C-M-m") 'delete-indentation) ;; TODO conflict with magit-status
+;; (global-set-key (kbd "C-M-k") 'kill-line)
+;; (global-set-key (kbd "C-m") 'newline-and-indent)
+;; (global-set-key (kbd "C-M-m") 'delete-indentation) ;; TODO conflict with magit-status
+;; (global-set-key (kbd "C-S-l") 'recenter-top-bottom)
 
 
 ;; often used
@@ -79,7 +78,7 @@
     (save-excursion
       (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
       (kill-ring-save (line-beginning-position) (+ 1 (line-end-position))))))
-(global-set-key (kbd "C-c") 'my-copy) ;; default is kill-ring-save
+(global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
 
 
 ;; cut region if it exists
@@ -114,7 +113,7 @@
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
-(global-set-key (kbd "C-m") 'my-new-line) ;; default is newline-and-indent
+(global-set-key (kbd "C-j") 'my-new-line) ;; default is newline-and-indent
 
 
 (defun grep-word-at-point()

@@ -22,7 +22,8 @@
   (setq mac-command-modifier 'meta)
   )
 
-(load-theme 'tango-dark t)
+; (load-theme 'tango-dark t)
+(load-theme 'tango t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -38,8 +39,8 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 
-(load-file "~/.emacs.d/erlang.el")
-(load-file "~/.emacs.d/ocaml.el")
-(load-file "~/.emacs.d/yaml.el")
+;(load-file "~/.emacs.d/erlang.el")
+;(load-file "~/.emacs.d/ocaml.el")
+;(load-file "~/.emacs.d/yaml.el")
 
 (load-file "~/.emacs.d/hotkeys.el")
