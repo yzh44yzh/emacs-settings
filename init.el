@@ -14,8 +14,10 @@
 (setq-default sgml-basic-offset 4)
 
 (if (eq system-type 'darwin)
-    (set-face-attribute 'default nil :font "Monaco-17")
-    (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
+  (set-face-attribute 'default nil :font "Monaco-17")
+  (set-face-attribute 'default nil :font "Ubuntu Mono-15")
+  )
+
 
 (when (eq system-type 'darwin) ;; mac specific settings
   (setq mac-option-modifier 'meta)
@@ -61,3 +63,17 @@
 ;(load-file "~/.emacs.d/yaml.el")
 
 (load-file "~/.emacs.d/hotkeys.el")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (cl-lib cl-lib-highlight rustic docker-compose-mode dockerfile-mode yaml-mode haskell-mode markdown-mode neotree cl-libify))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
