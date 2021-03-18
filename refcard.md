@@ -1,119 +1,181 @@
-# Refcard Minimal.
+# Refcard
+
+C-x means character eXtend (followed by one character)
+M-x means command eXtend (followed by a command)
+
 
 ## General
 
-C-g      abort
-C-u      num argument
-C-z      undo (default is C-x u)
-C-u Num  repeat-count
+C-g    keyboard-quit
+C-u    universal-argument
+C-z    undo    (default is C-x u)
+C-x z  repeat  (C-x zzz -- повторить 3 раза)
 
 
 ## Files & Buffers
 
-C-x C-f  find-file (Open)
-C-x C-s  save-buffer (Save)
-C-x s    save-some-buffers (Save all)
-C-x i    insert-file (add file content)
-C-x C-w  write-file (Save as)
+C-x C-f  find-file  Open
+C-x 4 f  find-file-other-window
+
+M-s M-s  save-buffer        Save (default is C-x C-s)
+C-x s    save-some-buffers  Save all
+C-x C-w  write-file         Save as
 
 C-x b    switch-to-buffer
-C-x C-b  list-buffers
-C-x k    kill-buffer
-
-Custom:
+C-x 4 b  switch-to-buffer-other-window
 C-;      ido-switch-buffer
-C-x C-b  ibuffer
-M-s M-s  save-buffer
-C-x C-k  kill-buffer
+
+C-x C-b  ibuffer      (shadows list-buffers)
+C-x C-k  kill-buffer  (default is C-x k)
+
+C-x C-c  save-buffers-kill-terminal  Exit emacs
+
+M-x      clean-buffer-list
 
 
-## Moving & Editing
+## Move
 
-C-a   move-beginning-of-line
-C-e   move-end-of-line
-M-a   backward-sentence
-M-e   forward-sentence
-C-M-a beginning-of-defun
-C-M-e end-of-defun
-M-<   beginning-of-buffer
-M->   end-of-buffer
-C-v   scroll-up
-M-v   scroll-down
-C-l   recenter-top-bottom
-M-r   move-to-window-line-top-bottom
+C-a    move-beginning-of-line
+C-e    move-end-of-line
+M-m    back-to-indentation  (к началу отступа)
 
-C-j      newline-and-indent
-C-t      transpose-char
-M-t      transpose-words
-C-x C-t  transpose-lines
+C-M-a  beginning-of-defun
+C-M-e  end-of-defun
+
+C-M-f  forward-sexp
+C-M-b  backward-sexp
+C-M-u  backward-up-list  (к началу sexp)
+
+M-a    backward-sentence
+M-e    forward-sentence
+
+M-{    backward-paragraph  TODO на ErgoDox неудобно нажимать, нужно поменять
+M-}    forward-paragraph
+
+M-<    beginning-of-buffer  TODO на ErgoDox неудобно
+M->    end-of-buffer
+
+M-g g  goto-line
+
+C-v    scroll-up
+M-v    scroll-down
+
+C-l    recenter-top-bottom
+C-M-l  reposition-window  (smart reposition, make current definition visible)
+M-r    move-to-window-line-top-bottom
+
+M-x    follow-mode  (for 2 vertical windows)
+
+
+## Edit
+
+C-j      my-new-line         (shadows newline-and-indent)
+C-S-j    delete-indentation  (default is M-^)
+C-d      duplicate-line      (shadows delete-char)
 
 C-M \    indent-region
-C-x C-o  delete-blank-lines
+C-M-q    indent-sexp
+C-x Tab  indent-rigidly
+
 M-\      delete-horizontal-space
+M-Space  just-one-space
+C-x C-o  delete-blank-lines
 
-Custom:
-C-M-j    delete-indentation
-C-M-d    duplicate-line
-C-j      my-new-line
-C-S-j    delete-indentation
+C-t      transpose-char
+M-t      transpose-words
+C-M-t    transpose-sexps
+C-x C-t  transpose-lines
+
+M-l      downcase-word
+M-u      upcase-word
+M-c      capitalize-word
+
+M-q      fill-paragraph
+C-x i    insert-file  (add file content)
+
+M-x      auto-fill-mode (автоматический перенос строк)
+M-x      sort-lines
 
 
-## Marking & Killing (Select & Delete)
+## Mark (Select)
 
-C-Space  set-mark-command
-  C-u C-Space jump to the mark
-  C-x C-x  exchange-point-and-mark
+C-Space      set-mark-command
+C-u C-Space  pop-makr         (jump to the mark in current buffer)
+C-x C-Space  pop-global-mark  (jump to the mark globally)
+C-x C-x      exchange-point-and-mark
 
-C-M-h    mark-defun
-C-x h    mark-whole-buffer
+M-@    mark-word
+M-h    mark-paragraph
+C-M-@  mark-sexp
+C-M-h  mark-defun
+C-x h  mark-whole-buffer
 
-C-d      delete-char
-M-d      kill-word
-C-k      kill-line
-M-z char zap-to-char (kill to char)
 
-Use S-Del, C-Ins, S-Inst instead of this:
-C-w      kill-region (cut)
-M-w      kill-ring-save (copy)
-M-y      yank-pop (paste from history)
+## Kill & Yank (Cut, Copy, Paste)
 
-Custom:
-C-x C-h mark-whole-buffer
-M-w     my-copy
-C-w     my-cut
-C-y     kill-whole-line
+S-delete  my-cut   (shadows kill-region)
+C-insert  my-copy  (shadows kill-ring-save)
+S-insert  yank
+M-y       yank-pop (paste from history)
+
+M-d    kill-word
+C-k    kill-line
+C-y    kill-whole-line  (shadows yank)
+M-k    kill-sentence
+C-M-k  kill-sexp
 
 
 ## Search & Replace
 
-C-s   isearch-forward
-C-r   isearch-backward
-C-M-s isearch-forward-regexp
-C-M-r isearch-backward-regexp
-  M-n - search for the next item in the search ring.
-  M-p - search for the previous item in the search ring.
+TODO stopped here
 
-C-M-r  query-replace
-  y - replace the current match.
-  n - skip to the next match without replacing.
-  q - exit without doing any more replacements.
-  , - replace this one, dont move
-  . - replace this match, then exit.
+C-s   isearch-forward (i means incremental)
+C-r   isearch-backward
+  C-s C-s  search again (то же слово)
+  M-p M-n  minibuffer history
+
+C-M-s  isearch-forward-regexp
+C-M-r  isearch-backward-regexp
+
+C-M-r  query-replace (custom)
+  y - replace the current match and move on (also space)
+  n - skip the current match and move on (also backspace)
+  q - exit without doing any more replacements (also return)
+  , - replace this match, don't move (y or n to move on)
+  . - replace this match, then exit
   ^ - back up to previous match
   ! - replace all remaining matches with no more questions.
 
+M-x  replace-string
+M-x  query-replace-regexp
+M-x  occur (выводит результаты поиска в отдельном буфере)
+
+M-x replace-string<Return>old-string<Return>new-string
+
+
 Custom:
-C-M-s grep
-C-M-r query-replace
-M-s s grep-word-at-point
+C-M-s  grep
+M-s s  grep-word-at-point
 
 
 ## Dev
 
 C-x C-e  eval-last-sexp
-M-/  dabbrev-expand (expand word)
-M-x eval-region
-M-g g goto-line
+C-M-x    eval-defun
+
+M-/      dabbrev-expand (expand word)
+C-x /    comment-line
+M-(      insert-parentheses (добавялет пару скобок и курсор между ними)
+
+M-.      xref-find-definitions (go to definition, нужна таблица тэгов TAGS)
+C-x 4 .  xref-find-definitions-other-window
+M-,      xref-pop-marker-stack (go back to where M-. was invoked)
+
+M-x  visit-tags-table
+find . -name \*.py | xargs etags
+
+M-x tags-search RET regexp RET (Поиск regexp во всех файлах в выбранной таблице тегов.)
+M-x tags-query-replace
 
 Custom:
 C-Return complete-symbol
@@ -127,40 +189,7 @@ C-x 2  split-window-vertically
 C-x 3  split-window-horizontally
 C-x o  other-window
 
-Custom:
-C-o    other-window
-
-
-## Help
-
-C-h k  key
-C-h f  function
-C-h v  variable
-C-h m  mode
-C-h a  apropos
-
-
-## Registers & Bookmarks
-
-C-x r SPC reg  point-to-register
-C-x r j reg    jump-to-register
-C-x r s reg    copy-to-register
-C-x r i reg    insert-register
-C-x r m        bookmark-set
-C-x r b name   bookmark-jump
-C-x r l        list-bookmarks
-
-
-# Refcard Extended
-
-C-x means character eXtend (followed by one character)
-M-x means command eXtend (followed by a command)
-
-C-x C-c save-buffers-kill-terminal (exit emacs)
-
-M-x replace-string<Return>old-string<Return>new-string
-
-M-q fill-paragraph
+C-x +  balance-windows (выровнять размеры всех окон)
 
 C-M-v  scroll-other-window
 C-x ^  enlarge-window
@@ -168,9 +197,97 @@ C-x {  shrink-window-horizontally
 C-x }  enlarge-window-horizontally
 
 
+Custom:
+C-o    other-window
+
+
+## Help
+
+C-h k    key
+C-h f    function
+C-h v    variable
+C-h m    mode
+C-h a    apropos
+C-h C-h  help-for-help
+
+
+## Registers & Bookmarks
+
+C-x r SPC reg  point-to-register
+C-x r j reg    jump-to-register
+
+C-x r s reg    copy-to-register (s - save)
+C-x r i reg    insert-register
+
+M-x view-register reg
+
+C-x r m        bookmark-set (m - memo)
+C-x r b name   bookmark-jump (b - bookmark)
+C-x r l        list-bookmarks
+
+
+## Minibuffer
+
+History:
+M-p  previous-history-element
+M-n  next-history-element
+M-r  previous-matching-history-element
+M-s  next-matching-history-element
+
+
 ## Macros
 
-F3	Start recording macro
-F4	Stop recording macro
-F4	Play back macro once
-M-5 F4	Play back macro 5 times
+TODO: bind them to F3-5 keys
+F3  start-kbd-macro  Start recording macro
+F4  end-kbd-macro  Stop recording macro
+F5  call-last-kbd-macro
+
+M-x name-last-kbd-macro (задает имя функции, по которому можно будет запустить макрос)
+M-x insert-kdb-macro (вставить код макроса в текущий буфер)
+
+
+## org-mode & markdown
+
+C-c C-n  outline-next-visible-heading (след заголовок)
+C-c C-p  outline-previous-visible-heading
+C-c C-f  outline-forward-same-level (след заголовок того же уровня)
+C-c C-b  outline-backward-same-level
+C-c C-u  outline-up-heading (заголовок выше по уровню)
+
+
+## dired
+
+M-x dired
+
++  dired-create-directory
+i  dired-maybe-insert-subdir  (показать содержимое дочернего каталога)
+g  revert-buffer (обновить содержимое буфера)
+
+f  dired-find-file (открыть файл, Ret работает так же)
+o  dired-find-file-other-window
+C-o  dired-display-file (открывает файл в отдельном окне, но не выбирает это окно)
+
+m  dired-mark
+u  dired-unmark
+%m dired-mark-files-regexp (помечает файлы по регулярному выражению)
+
+С dest Return  dired-do-copy (копирует помеченые файлы в каталог dest)
+R dest Return  dired-do-rename (перемещает помеченые файлы в каталог dest)
+D              dired-do-delete (удаляет помеченые файлы)
+%C old_name_regexp Ret new_name_regexp Ret (copy files)
+%R old_name_regexp Ret new_name_regexp Ret (rename files)
+
+=   dired-diff (diff file at point with file at mark)
+
+d  dired-flag-file-deletion (поставить флаг удаления)
+u  dired-unmark (убрать флаг удаления)
+%d dired-flag-files-regexp (помечает для удаления файлы по регулярному выражению)
+x  dired-expunge запуск (удаление с запросом подтверждения)
+
+
+## shell
+
+M-x shell
+
+M-! shell-command (запустить команду, показать вывод в буфере)
+M-| shell-command-on-region (передать region на вход команды)

@@ -2,6 +2,7 @@
 (global-linum-mode) ;; show line numbers
 (show-paren-mode 1) ;; highlight matching parensesis
 (setq show-paren-style 'expression)
+(setq parens-require-spaces nil) ;; do not add space before paren
 (setq-default indent-tabs-mode nil) ;; spaces instead of tabs
 (setq-default tab-width 4)
 (setq make-backup-files nil)
@@ -12,6 +13,10 @@
 (blink-cursor-mode 0)
 (global-auto-revert-mode t) ;; reverts any buffer associated with a file when the file changes on disk
 (setq-default sgml-basic-offset 4)
+(setq-default bookmark-save-flag 1) ;; save bookmarks on each change
+
+(setq-default sentence-end "[.?!][]\"’)]*\\($\\|\t\\| \\)[ \t\n]*") ;; один пробел в конце предложения, а не два.
+(setq-default sentence-end-double-space nil)
 
 (if (eq system-type 'darwin)
   (set-face-attribute 'default nil :font "Monaco-17")

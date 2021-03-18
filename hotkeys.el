@@ -1,75 +1,65 @@
 ;; 57.4.6 Rebinding Keys in Your Init File
 ;; http://www.gnu.org/s/libtool/manual/emacs/Init-Rebinding.html
 
-;; standard hotkeys
-;; (global-set-key (kbd "M-x") 'kill-region) conflict with exec, C-x also
-;; (global-set-key (kbd "C-c") 'kill-ring-save) ;; Copy
-;; (global-set-key (kbd "C-v") 'yank)           ;; Paste
-;; (global-set-key (kbd "M-v") 'yank-pop)       ;; Paste from history
-;; (global-set-key (kbd "C-z") 'undo)           ;; Undo
-;; (global-set-key (kbd "C-S-z") 'redo)         ;; Redo
-;; (global-set-key (kbd "C-S-s") 'save-some-buffers) ;; Save All
-;; (global-set-key (kbd "C-S-a") 'mark-whole-buffer) ;; Select All
-;; (global-set-key (kbd "C-r") 'query-replace)       ;; Replace
+;; Examples:
+;; http://ergoemacs.org/emacs/keyboard_shortcuts_examples.html
 
 
+;; General
+(global-set-key (kbd "C-z") 'undo)  ;; default is to put emacs to background
+
+
+;; Files & Buffers
+(global-set-key (kbd "C-;") 'ido-switch-buffer) ;; convenient to press
+(global-set-key (kbd "M-s M-s") 'save-buffer)
+(global-set-key (kbd "C-x C-k") 'kill-buffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)       ;; shadows list-buffers
+
+
+;; Move
+;;
 ;; Vim-like cursor move
 ;;   i
 ;; j k l
 ;; https://tonsky.livejournal.com/314598.html
-;; (global-set-key (kbd "C-l") 'forward-char)
-;; (global-set-key (kbd "C-j") 'backward-char)
-;; (global-set-key (kbd "C-k") 'next-line)
-;; (global-set-key (kbd "C-i") 'previous-line)
-;; (global-set-key (kbd "M-l") 'forward-word)
-;; (global-set-key (kbd "M-j") 'backward-word)
-;; (global-set-key (kbd "M-k") 'scroll-up)   ;; Page Down
-;; (global-set-key (kbd "M-i") 'scroll-down) ;; Page Up
+;;
+;; to use <super> need to disable window action key:
+;; Gnome Tweaks, Windows, Window Action Key: disabled
+;;
+(global-set-key (kbd "s-l") 'forward-char)
+(global-set-key (kbd "s-j") 'backward-char)
+(global-set-key (kbd "s-k") 'next-line)
+(global-set-key (kbd "s-i") 'previous-line)
+(global-set-key (kbd "C-s-l") 'forward-word)
+(global-set-key (kbd "C-s-j") 'backward-word)
 
-;; (global-set-key (kbd "C-M-k") 'kill-line)
-;; (global-set-key (kbd "C-m") 'newline-and-indent)
-;; (global-set-key (kbd "C-M-m") 'delete-indentation) ;; TODO conflict with magit-status
-;; (global-set-key (kbd "C-S-l") 'recenter-top-bottom)
+;; Edit
+(global-set-key (kbd "C-S-j") 'delete-indentation)
 
+;; Mark (Select)
+(global-set-key (kbd "C-x C-h") 'mark-whole-buffer)  ;; default is 'Key translations ...'
 
-;; often used
-(global-set-key (kbd "C-;") 'ido-switch-buffer) ;; no default, convenient to press
-(global-set-key (kbd "M-s M-s") 'save-buffer)   ;; no default
-(global-set-key (kbd "C-x C-k") 'kill-buffer)   ;; no default
+;; Kill & Yank
+(global-set-key (kbd "C-y") 'kill-whole-line)  ;; shadows yank
 
-;; more useful hotkeys:
-(global-set-key [C-return] 'complete-symbol)    ;; no default
-(global-set-key (kbd "C-M-s") 'grep)            ;; default is isearch-forward-regexp
-(global-set-key (kbd "C-M-r") 'query-replace)   ;; default is isearch-backward-regexp
-(global-set-key (kbd "C-S-j") 'delete-indentation) ;; no default
-(global-set-key "\C-o" 'other-window)              ;; default is open-line
-(global-set-key (kbd "C-y") 'kill-whole-line)      ;; default is yank
+;; Search & Replace
+(global-set-key (kbd "C-M-r") 'query-replace)  ;; shadows isearch-backward-regexp
 
-;; org-mode
-;; TODO need other hotkeys
-;; (global-set-key "\C-cl" 'org-store-link)
-;; (global-set-key "\C-ca" 'org-agenda)
-;; (global-set-key "\C-cb" 'org-iswitchb)
+;; Dev
+(global-set-key [C-return] 'complete-symbol)
+(global-set-key (kbd "C-/") 'comment-line)  ;; shadows undo
 
-;; shadow bad hotkeys:
-(global-set-key (kbd "C-z") 'undo)        ;; default is to put emacs to background
-(global-set-key (kbd "C-x C-b") 'ibuffer) ;; default is list-buffers,
-(global-set-key (kbd "C-x C-h") 'mark-whole-buffer) ;; default is 'Key translations ...'
+;; Windows
+(global-set-key "\C-o" 'other-window)  ;; shadows open-line
 
-
-;; tags
-(global-set-key (kbd "M-,") 'pop-tag-mark) ;; default is tags-loop-continue
-(global-set-key (kbd "C-M-M") 'magit-status) ;; default is 'return'
-
-;; neotree
+;; Neotree
 (global-set-key (kbd "<f3>") 'neotree-toggle)
 (global-set-key (kbd "<f4>") 'neotree-find)
 
 
-
 ;; copy region if it exists
 ;; or copy current line if region not exists
-;; to internal and to system buffer
+;; copy to internal and to system buffer
 (defun my-copy()
   (interactive)
   (if (region-active-p)
@@ -79,12 +69,12 @@
     (save-excursion
       (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
       (kill-ring-save (line-beginning-position) (+ 1 (line-end-position))))))
-(global-set-key (kbd "M-w") 'my-copy) ;; default is kill-ring-save
+(global-set-key (kbd "C-<insert>") 'my-copy)
 
 
 ;; cut region if it exists
 ;; or cut current line if region not exists
-;; to internal and to system buffer
+;; cut to internal and to system buffer
 (defun my-cut()
   (interactive)
   (if (region-active-p)
@@ -94,10 +84,9 @@
     (progn
       (clipboard-kill-ring-save (line-beginning-position) (+ 1 (line-end-position)))
       (kill-region (line-beginning-position) (+ 1 (line-end-position))))))
-(global-set-key (kbd "C-w") 'my-cut) ;; default is kill-region
+(global-set-key (kbd "S-<delete>") 'my-cut)
 
 
-;; duplicate line
 (defun duplicate-line()
   (interactive)
   (setq kill-ring nil)
@@ -107,7 +96,7 @@
   (newline)
   (yank)
   (setq kill-ring nil))
-(global-set-key (kbd "C-M-d") 'duplicate-line)
+(global-set-key (kbd "C-d") 'duplicate-line)
 
 
 (defun my-new-line()
@@ -115,6 +104,7 @@
   (move-end-of-line nil)
   (newline-and-indent))
 (global-set-key (kbd "C-j") 'my-new-line) ;; default is newline-and-indent
+(global-set-key (kbd "S-<return>") 'my-new-line) ;; default is newline-and-indent
 
 
 (defun grep-word-at-point()
@@ -122,6 +112,30 @@
   (setq arg (format "grep -nH -e %s *" (word-at-point)))
   (grep arg))
 (global-set-key (kbd "M-s s") 'grep-word-at-point)
+
+
+(defun insert_org_code ()
+  (interactive)
+  (beginning-of-line)
+  (insert "#+BEGIN_SRC Erlang\n")
+  (insert "\n")
+  (insert "#+END_SRC\n")
+  (previous-line)
+  (previous-line)
+  (beginning-of-line))
+(global-set-key (kbd "<f5>") 'insert_org_code)
+
+
+(defun normal-font ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
+(global-set-key (kbd "<f9>") 'normal-font)
+
+
+(defun presentation-font ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Ubuntu Mono-22"))
+(global-set-key (kbd "<f8>") 'presentation-font)
 
 
 ; @author Nikita Danilov http://www.cofault.com/2011/12/cue-key.html
@@ -149,27 +163,3 @@
 
 (global-set-key (kbd "M-Б") 'beginning-of-buffer)
 (global-set-key (kbd "M-Ю") 'end-of-buffer)
-
-
-(defun insert_org_code ()
-  (interactive)
-  (beginning-of-line)
-  (insert "#+BEGIN_SRC Erlang\n")
-  (insert "\n")
-  (insert "#+END_SRC\n")
-  (previous-line)
-  (previous-line)
-  (beginning-of-line))
-(global-set-key (kbd "<f5>") 'insert_org_code)
-
-
-(defun normal-font ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
-(global-set-key (kbd "<f9>") 'normal-font)
-
-
-(defun presentation-font ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-22"))
-(global-set-key (kbd "<f8>") 'presentation-font)
