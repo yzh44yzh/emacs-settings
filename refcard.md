@@ -21,9 +21,8 @@ M-s M-s  save-buffer        Save (default is C-x C-s)
 C-x s    save-some-buffers  Save all
 C-x C-w  write-file         Save as
 
-C-x b    switch-to-buffer
+C-;      ido-switch-buffer  (default is C-x b)
 C-x 4 b  switch-to-buffer-other-window
-C-;      ido-switch-buffer
 
 C-x C-b  ibuffer      (shadows list-buffers)
 C-x C-k  kill-buffer  (default is C-x k)
@@ -49,10 +48,10 @@ C-M-u  backward-up-list  (к началу sexp)
 M-a    backward-sentence
 M-e    forward-sentence
 
-M-{    backward-paragraph  TODO на ErgoDox неудобно нажимать, нужно поменять
+M-{    backward-paragraph
 M-}    forward-paragraph
 
-M-<    beginning-of-buffer  TODO на ErgoDox неудобно
+M-<    beginning-of-buffer
 M->    end-of-buffer
 
 M-g g  goto-line
@@ -60,9 +59,9 @@ M-g g  goto-line
 C-v    scroll-up
 M-v    scroll-down
 
-C-l    recenter-top-bottom
+C-l    recenter-top-bottom (line under cursor)
 C-M-l  reposition-window  (smart reposition, make current definition visible)
-M-r    move-to-window-line-top-bottom
+M-r    move-to-window-line-top-bottom (move cursor)
 
 M-x    follow-mode  (for 2 vertical windows)
 
@@ -127,58 +126,48 @@ C-M-k  kill-sexp
 
 ## Search & Replace
 
-TODO stopped here
-
 C-s   isearch-forward (i means incremental)
 C-r   isearch-backward
-  C-s C-s  search again (то же слово)
-  M-p M-n  minibuffer history
+C-s C-s  search again (то же слово)
 
 C-M-s  isearch-forward-regexp
-C-M-r  isearch-backward-regexp
 
-C-M-r  query-replace (custom)
-  y - replace the current match and move on (also space)
-  n - skip the current match and move on (also backspace)
-  q - exit without doing any more replacements (also return)
-  , - replace this match, don't move (y or n to move on)
-  . - replace this match, then exit
-  ^ - back up to previous match
-  ! - replace all remaining matches with no more questions.
+C-M-r  query-replace (default is M-%)
+  y (space)      replace the current match and move on
+  n (backspace)  skip the current match and move on
+  q (return)     exit without doing any more replacements
+  ,  replace this match, don't move (y or n to move on)
+  .  replace this match, then exit
+  ^  back up to previous match
+  !  replace all remaining matches with no more questions.
 
 M-x  replace-string
 M-x  query-replace-regexp
 M-x  occur (выводит результаты поиска в отдельном буфере)
 
-M-x replace-string<Return>old-string<Return>new-string
+M-x  replace-string<Return>old-string<Return>new-string
 
-
-Custom:
 C-M-s  grep
 M-s s  grep-word-at-point
 
 
 ## Dev
 
-C-x C-e  eval-last-sexp
-C-M-x    eval-defun
+C-x C-e   eval-last-sexp
+C-M-x     eval-defun
 
-M-/      dabbrev-expand (expand word)
-C-x /    comment-line
-M-(      insert-parentheses (добавялет пару скобок и курсор между ними)
+C-Return  complete-symbol
+M-/       dabbrev-expand (expand word)
+C-x /     comment-line
+M-(       insert-parentheses (добавялет пару скобок и курсор между ними)
 
-M-.      xref-find-definitions (go to definition, нужна таблица тэгов TAGS)
-C-x 4 .  xref-find-definitions-other-window
-M-,      xref-pop-marker-stack (go back to where M-. was invoked)
+M-.       xref-find-definitions (go to definition, нужна таблица тэгов TAGS)
+C-x 4 .   xref-find-definitions-other-window
+M-,       xref-pop-marker-stack (go back to where M-. was invoked)
 
-M-x  visit-tags-table
-find . -name \*.py | xargs etags
-
+M-x visit-tags-table
 M-x tags-search RET regexp RET (Поиск regexp во всех файлах в выбранной таблице тегов.)
 M-x tags-query-replace
-
-Custom:
-C-Return complete-symbol
 
 
 ## Windows
@@ -187,7 +176,7 @@ C-x 0  delete-window
 C-x 1  delete-other-windows
 C-x 2  split-window-vertically
 C-x 3  split-window-horizontally
-C-x o  other-window
+C-o    other-window (default is C-x o)
 
 C-x +  balance-windows (выровнять размеры всех окон)
 
@@ -195,10 +184,6 @@ C-M-v  scroll-other-window
 C-x ^  enlarge-window
 C-x {  shrink-window-horizontally
 C-x }  enlarge-window-horizontally
-
-
-Custom:
-C-o    other-window
 
 
 ## Help
@@ -228,7 +213,6 @@ C-x r l        list-bookmarks
 
 ## Minibuffer
 
-History:
 M-p  previous-history-element
 M-n  next-history-element
 M-r  previous-matching-history-element
@@ -237,22 +221,21 @@ M-s  next-matching-history-element
 
 ## Macros
 
-TODO: bind them to F3-5 keys
-F3  start-kbd-macro  Start recording macro
-F4  end-kbd-macro  Stop recording macro
-F5  call-last-kbd-macro
+F5  start-kbd-macro  Start recording macro
+F6  end-kbd-macro    Stop recording macro
+F7  call-last-kbd-macro
 
 M-x name-last-kbd-macro (задает имя функции, по которому можно будет запустить макрос)
-M-x insert-kdb-macro (вставить код макроса в текущий буфер)
+M-x insert-kdb-macro    (вставить код макроса в текущий буфер)
 
 
 ## org-mode & markdown
 
-C-c C-n  outline-next-visible-heading (след заголовок)
+C-c C-n  outline-next-visible-heading  (след заголовок)
 C-c C-p  outline-previous-visible-heading
-C-c C-f  outline-forward-same-level (след заголовок того же уровня)
+C-c C-f  outline-forward-same-level  (след заголовок того же уровня)
 C-c C-b  outline-backward-same-level
-C-c C-u  outline-up-heading (заголовок выше по уровню)
+C-c C-u  outline-up-heading  (заголовок выше по уровню)
 
 
 ## dired
@@ -261,15 +244,15 @@ M-x dired
 
 +  dired-create-directory
 i  dired-maybe-insert-subdir  (показать содержимое дочернего каталога)
-g  revert-buffer (обновить содержимое буфера)
+g  revert-buffer  (обновить содержимое буфера)
 
-f  dired-find-file (открыть файл, Ret работает так же)
+f  dired-find-file  (открыть файл, Ret работает так же)
 o  dired-find-file-other-window
-C-o  dired-display-file (открывает файл в отдельном окне, но не выбирает это окно)
+C-o  dired-display-file  (открывает файл в отдельном окне, но не выбирает это окно)
 
 m  dired-mark
 u  dired-unmark
-%m dired-mark-files-regexp (помечает файлы по регулярному выражению)
+%m dired-mark-files-regexp  (помечает файлы по регулярному выражению)
 
 С dest Return  dired-do-copy (копирует помеченые файлы в каталог dest)
 R dest Return  dired-do-rename (перемещает помеченые файлы в каталог dest)
@@ -277,7 +260,7 @@ D              dired-do-delete (удаляет помеченые файлы)
 %C old_name_regexp Ret new_name_regexp Ret (copy files)
 %R old_name_regexp Ret new_name_regexp Ret (rename files)
 
-=   dired-diff (diff file at point with file at mark)
+=  dired-diff  (diff file at point with file at mark)
 
 d  dired-flag-file-deletion (поставить флаг удаления)
 u  dired-unmark (убрать флаг удаления)

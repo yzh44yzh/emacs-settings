@@ -68,6 +68,16 @@
 ;(load-file "~/.emacs.d/yaml.el")
 
 (load-file "~/.emacs.d/hotkeys.el")
+
+
+(defun my-orgmode-config ()
+  "For use in `orgmode-hook'."
+  (local-set-key (kbd "C-y") 'kill-whole-line)  ;; default is org-return-indent
+  (local-set-key (kbd "C-j") 'my-new-line) ;; default is org-yank
+  )
+
+(add-hook 'org-mode-hook 'my-orgmode-config)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

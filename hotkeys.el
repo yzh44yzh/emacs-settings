@@ -52,6 +52,11 @@
 ;; Windows
 (global-set-key "\C-o" 'other-window)  ;; shadows open-line
 
+;; Macros
+(global-set-key (kbd "<f5>") 'start-kbd-macro)
+(global-set-key (kbd "<f6>") 'start-kbd-macro)
+(global-set-key (kbd "<f7>") 'start-kbd-macro)
+
 ;; Neotree
 (global-set-key (kbd "<f3>") 'neotree-toggle)
 (global-set-key (kbd "<f4>") 'neotree-find)
@@ -123,18 +128,18 @@
   (previous-line)
   (previous-line)
   (beginning-of-line))
-(global-set-key (kbd "<f5>") 'insert_org_code)
+;; (global-set-key (kbd "<f5>") 'insert_org_code)
 
 
 (defun normal-font ()
   (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-13"))
+  (set-face-attribute 'default nil :font "Ubuntu Mono-15"))
 (global-set-key (kbd "<f9>") 'normal-font)
 
 
 (defun presentation-font ()
   (interactive)
-  (set-face-attribute 'default nil :font "Ubuntu Mono-22"))
+  (set-face-attribute 'default nil :font "Ubuntu Mono-19"))
 (global-set-key (kbd "<f8>") 'presentation-font)
 
 
