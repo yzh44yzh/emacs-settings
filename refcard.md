@@ -238,7 +238,7 @@ C-c C-b  outline-backward-same-level
 C-c C-u  outline-up-heading  (заголовок выше по уровню)
 
 
-## dired
+## Dired
 
 M-x dired
 
@@ -268,9 +268,26 @@ u  dired-unmark (убрать флаг удаления)
 x  dired-expunge запуск (удаление с запросом подтверждения)
 
 
-## shell
+## Shell
 
 M-x shell
 
 M-! shell-command (запустить команду, показать вывод в буфере)
 M-| shell-command-on-region (передать region на вход команды)
+
+
+## Projectile
+
+C-c p f    projectile-find-file  (in current project)
+C-c p b    projectile-switch-to-buffer
+C-c p e    projectile-recentf  (recent files)
+
+C-c p d    projectile-find-dir  (open dir in dired)
+C-c p D    projectile-dired  (root dir in dired)
+
+C-c p p    projectile-switch-project
+C-c p q    projectile-switch-open-project
+
+C-c p j    projectile-find-tag
+C-c p R    projectile-regenerate-tags
+C-c p s g  projectile-grep

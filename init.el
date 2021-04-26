@@ -62,12 +62,22 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 
-;(load-file "~/.emacs.d/erlang.el")
-;(load-file "~/.emacs.d/ocaml.el")
-;(load-file "~/.emacs.d/yaml.el")
+;; (load-file "~/.emacs.d/erlang.el")
+;; (load-file "~/.emacs.d/ocaml.el")
+;; (load-file "~/.emacs.d/yaml.el")
 
 (load-file "~/.emacs.d/hotkeys.el")
 
+;; projectile
+;; https://docs.projectile.mx/projectile/index.html
+(require 'projectile)
+(setq projectile-project-search-path '("~/p/mypocket/" "~/Dropbox/org/"))
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
+(setq projectile-switch-project-action #'projectile-dired)
+
+(require 'subr-x)
+(recentf-mode 1)
 
 (defun my-orgmode-config ()
   "For use in `orgmode-hook'."
@@ -84,7 +94,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cl-lib cl-lib-highlight rustic docker-compose-mode dockerfile-mode yaml-mode haskell-mode markdown-mode neotree cl-libify))))
+    (projectile lua-mode elixir-mode cl-lib cl-lib-highlight rustic docker-compose-mode dockerfile-mode yaml-mode haskell-mode markdown-mode neotree cl-libify))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
