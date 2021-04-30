@@ -76,8 +76,12 @@
 (projectile-mode +1)
 (setq projectile-switch-project-action #'projectile-dired)
 
+;; recent file mode
 (require 'subr-x)
 (recentf-mode 1)
+
+;; neotree
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 (defun my-orgmode-config ()
   "For use in `orgmode-hook'."

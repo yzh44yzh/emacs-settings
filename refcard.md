@@ -99,14 +99,14 @@ M-x      sort-lines
 ## Mark (Select)
 
 C-Space      set-mark-command
-C-u C-Space  pop-makr         (jump to the mark in current buffer)
+C-u C-Space  pop-mark         (jump to the mark in current buffer)
 C-x C-Space  pop-global-mark  (jump to the mark globally)
 C-x C-x      exchange-point-and-mark
 
 M-@    mark-word
-M-h    mark-paragraph
 C-M-@  mark-sexp
 C-M-h  mark-defun
+M-h    mark-paragraph
 C-x h  mark-whole-buffer
 
 
@@ -118,10 +118,10 @@ S-insert  yank
 M-y       yank-pop (paste from history)
 
 M-d    kill-word
+C-M-k  kill-sexp
 C-k    kill-line
 C-y    kill-whole-line  (shadows yank)
 M-k    kill-sentence
-C-M-k  kill-sexp
 
 
 ## Search & Replace
@@ -291,3 +291,28 @@ C-c p q    projectile-switch-open-project
 C-c p j    projectile-find-tag
 C-c p R    projectile-regenerate-tags
 C-c p s g  projectile-grep
+
+
+## neotree
+
+SPC or RET or TAB
+Open current item if it is a file.
+Fold/Unfold current item if it is a directory.
+
+U Go up a directory
+
+g Refresh
+
+A Maximize/Minimize the NeoTree Window
+
+H Toggle display hidden files
+
+O Recursively open a directory
+
+C-c C-n  Create a file or create a directory if filename ends with a ‘/’
+C-c C-d  Delete a file or a directory.
+
+C-c C-r  Rename a file or a directory.
+C-c C-p  Copy a file or a directory.
+
+C-c C-c  Change the root directory.
