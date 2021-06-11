@@ -49,7 +49,8 @@
 
 
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (remove-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -68,6 +69,17 @@
 
 (load-file "~/.emacs.d/hotkeys.el")
 
+;; dired
+(setq dired-dwim-target t)
+
+(defun my-dired-mode-config ()
+  (dired-hide-details-mode 1)
+  (local-set-key (kbd "<f6>") 'dired-hide-details-mode)
+  (local-unset-key "\C-o")
+  )
+
+(add-hook 'dired-mode-hook 'my-dired-mode-config)
+
 ;; projectile
 ;; https://docs.projectile.mx/projectile/index.html
 (require 'projectile)
@@ -75,6 +87,11 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)
 (setq projectile-switch-project-action #'projectile-dired)
+
+(defun my-projectile-config ()
+  (local-set-key (kbd "C-M-f") 'projectile-grep)
+  )
+(add-hook 'projectile-mode-hook 'my-projectile-config)
 
 ;; recent file mode
 (require 'subr-x)
@@ -91,6 +108,14 @@
 
 (add-hook 'org-mode-hook 'my-orgmode-config)
 
+(defun xah-save-all-unsaved ()
+  "Save all unsaved files. no ask. Version 2019-11-05"
+  (interactive)
+  (save-some-buffers t))
+
+(add-hook 'focus-out-hook 'xah-save-all-unsaved)
+(setq after-focus-change-function 'xah-save-all-unsaved)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -98,7 +123,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile lua-mode elixir-mode cl-lib cl-lib-highlight rustic docker-compose-mode dockerfile-mode yaml-mode haskell-mode markdown-mode neotree cl-libify))))
+    (rust-mode projectile lua-mode elixir-mode cl-lib cl-lib-highlight rustic docker-compose-mode dockerfile-mode yaml-mode haskell-mode markdown-mode neotree cl-libify))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

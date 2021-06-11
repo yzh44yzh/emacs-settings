@@ -54,8 +54,6 @@
 
 ;; Macros
 (global-set-key (kbd "<f5>") 'start-kbd-macro)
-(global-set-key (kbd "<f6>") 'start-kbd-macro)
-(global-set-key (kbd "<f7>") 'start-kbd-macro)
 
 ;; Neotree
 (global-set-key (kbd "<f3>") 'neotree-toggle)

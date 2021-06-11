@@ -238,7 +238,7 @@ C-c C-b  outline-backward-same-level
 C-c C-u  outline-up-heading  (заголовок выше по уровню)
 
 
-## Dired
+## Dired (Directory Editor)
 
 M-x dired
 
@@ -252,21 +252,17 @@ C-o  dired-display-file  (открывает файл в отдельном ок
 
 m  dired-mark
 u  dired-unmark
-%m dired-mark-files-regexp  (помечает файлы по регулярному выражению)
+U  dired-unmark-all-marks
 
 С dest Return  dired-do-copy (копирует помеченые файлы в каталог dest)
 R dest Return  dired-do-rename (перемещает помеченые файлы в каталог dest)
 D              dired-do-delete (удаляет помеченые файлы)
-%C old_name_regexp Ret new_name_regexp Ret (copy files)
-%R old_name_regexp Ret new_name_regexp Ret (rename files)
 
 =  dired-diff  (diff file at point with file at mark)
 
-d  dired-flag-file-deletion (поставить флаг удаления)
-u  dired-unmark (убрать флаг удаления)
-%d dired-flag-files-regexp (помечает для удаления файлы по регулярному выражению)
-x  dired-expunge запуск (удаление с запросом подтверждения)
-
+^  dired-up-directory
+>  dired-next-dirline
+<  dired-prev-dirline
 
 ## Shell
 
